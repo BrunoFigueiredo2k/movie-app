@@ -20,7 +20,7 @@ function Home() {
     }, []);
 
     return (
-        <div className="container">
+        <div>
             {movies ?
             <MovieList movies={movies}></MovieList>
              : <p>No movies</p>}

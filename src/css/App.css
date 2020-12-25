@@ -32,9 +32,30 @@ h1 {
   margin-right: 60px;
 }
 
+.horizontal-ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.horizontal-ul li a:hover {
+  color: #2eafbb;
+}
+
 .header {
   padding: 20px 0;
   background-color: #000000;
+}
+
+.header-link {
+  text-decoration: none;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.header-link:hover {
+  color: #2eafbb !important;
 }
 
 .header ul {
@@ -183,5 +204,11 @@ h1 {
 
 .movie-details p {
   margin-top: 0;
+}
+
+footer {
+  padding: 40px 0;
+  background-color: #364669;
+  color: #ffffff;
 }
 /*# sourceMappingURL=App.css.map */

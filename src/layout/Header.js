@@ -13,16 +13,18 @@ export default function Header() {
         <div className="container">
             <ul>
                 <li>
-                    <h1 style={{margin: '0'}}>Movie App</h1>
+                  <Link to="/" className="header-link">
+                  <h1 style={{margin: '0'}}>Movie App</h1>
+                  </Link>
                 </li>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/" className="header-link">Popular</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/about" className="header-link">About</Link>
               </li>
               <li>
-                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/dashboard" className="header-link">Dashboard</Link>
               </li>
             </ul>
         </div>

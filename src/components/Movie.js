@@ -1,34 +1,55 @@
-import React from 'react'
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import React, { useState } from 'react'
 import { Col } from 'react-grid-system'
 import MovieDetails from './MovieDetails'
 import { useHistory, Route } from "react-router-dom";
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500"
 
-function Movie(props) {
+function Movie({movie, genres}) {
     const history = useHistory();
+    const genreNames = []
+    const genreIds = []
 
     const learnMoreMovie = () => {
-        const clickedMovie = props.movie
-        console.log(clickedMovie)
-        history.push(`/details/${props.movie.original_title}`, {...clickedMovie});
+        const clickedMovie = movie
+        history.push(`/details/${movie.original_title}`, {...clickedMovie});
     }
+
+    // Push genre ids of this movie to array
+    movie.genre_ids.map(id => genreIds.push(id))
+
+    // Map through all possible genres for id and name
+    genres.map(genre => {
+        genreIds.map(id => {
+            if (id === genre.id){
+                genreNames.push(genre.name)
+            }
+        })
+    })
+
+    const genresLen = genreNames.length
 
     return (
         <>
         <Col style={{margin: '20px 0'}}>
             <Route
-                path={`details/${props.movie.original_title}`}
-                render={props => (
-                    <MovieDetails {...props} movie={props.movie} />
+                path={`details/${movie.original_title}`}
+                render={movie => (
+                    <MovieDetails {...movie} movie={movie} />
                 )}
             />
             <div className="card-movie">
-                <img className="poster-img" onClick={learnMoreMovie} src={IMG_BASE_URL + props.movie.poster_path}></img>
-                <p className="title">{props.movie.original_title}</p>
-                <p className="genres">{props.movie.genre_ids.map(id => { return id + " "})}</p>
+                <img className="poster-img" onClick={learnMoreMovie} src={IMG_BASE_URL + movie.poster_path}></img>
+                <p className="title">{movie.original_title}</p>
+                <p className="genres">{genreNames.map((name, i) => {
+                    // Last item in array with no comma
+                    if (genresLen === i + 1) {
+                        return name
+                    } else {
+                        return name + ", "
+                    }
+                })}
+                </p>
             </div>
         </Col>
         </>

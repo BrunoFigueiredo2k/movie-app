@@ -7,7 +7,6 @@ const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500/"
 
 const MovieDetails = () => {
     const location = useLocation()
-    console.log(location.state)
 
     return (
         <div className="movie-details">
@@ -15,7 +14,7 @@ const MovieDetails = () => {
             style={{backgroundImage: `url(${IMG_BASE_URL + location.state.backdrop_path})`}}>
                 <div className="wrapper">
                     <h1 className="movie-details-title">{location.state.original_title}</h1>
-                    <span style={{fontSize: '30px', color: '#ccc', fontWeight: '700'}}> ({location.state.release_date.slice(0, 4)})</span>
+                    <span style={{fontSize: '30px', color: '#ccc', fontWeight: '600'}}> ({location.state.release_date.slice(0, 4)})</span>
                 </div>
             </div>
 
@@ -30,6 +29,9 @@ const MovieDetails = () => {
                             <li><span style={{marginLeft: '-50px', fontSize: '18px', color: '#ccc'}}>/ {location.state.vote_count} votes</span></li>
                             <li><p className="tag">Popularity: <b>{Math.round(location.state.popularity)}</b></p></li>
                         </ul>
+                        <p className="subtitle">Language:</p>
+                        <p className="description" style={{fontSize: '14px', textTransform: 'uppercase'}}>{location.state.original_language}</p>
+
                         <p className="subtitle">Release date:</p>
                         <p className="description" style={{fontSize: '14px'}}>{location.state.release_date}</p>
 

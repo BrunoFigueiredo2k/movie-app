@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+$black: #000000;
+$white: #ffffff;
+$dark-blue: #1e1e30;
+$light-blue: #364669;
+$very-light-blue: #2eafbb;
+$grey: #525e6c;
+
+$box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: rgb(30, 30, 48);
+    background: linear-gradient(36deg, rgba(30, 30, 48, 1) 58%, rgba(54, 70, 105, 1) 100%);
+    $color: $white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #000000;
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+
+    h1 {
+        color: $white !important;
+    }
+}
+
+.horizontal-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        margin-right: 60px;
+    }
+}
+
+.header {
+    padding: 20px 0;
+    background-color: $black;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            color: #2eafbb;
+            margin-right: 20px;
+        }
+    }
+
+    a,
+    h1 {
+        color: $white !important;
+    }
+}
+
+.movies-content {
+    padding: 30px 0;
+}
+
+.description {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.7em;
+}
+
+.card-movie {
+    width: 250px;
+    height: 500px;
+    padding-bottom: 20px;
+
+    .poster-img {
+        /* Add shadows to create the "card" effect */
+        box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.26);
+        transition: 0.3s;
+        width: 100%;
+        margin: 0 !important;
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.411);
+        }
+    }
+
+    .title {
+        margin: 5px 0 10px 0;
+        font-size: 18px;
+        color: $white;
+        font-weight: bold;
+    }
+
+    .genres {
+        margin-top: 5px;
+        font-size: 15px;
+        color: rgb(194, 194, 194);
+    }
+}
+
+.wrapper {
+    background-color: #00000098;
+    width: 100%;
+    height: 100%;
+}
+
+.movie-details {
+    color: $white;
+
+    &-title {
+        margin: 0;
+        font-size: 46px;
+        color: $white;
+    }
+
+    .wrapper {
+        background: rgb(0, 0, 0);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.922) 0%, rgba(0, 0, 0, 0.575) 100%);
+        padding: 80px 0;
+        text-align: center;
+    }
+
+    &-poster {
+        width: 100%;
+        margin-top: -50px;
+        border-image: linear-gradient(to right, red, yellow);
+        border-image-slice: 1;
+        border-radius: 20px;
+    }
+
+    &-top-stats {
+        padding: 20px 0;
+        height: 60px;
+        line-height: 60px;
+
+        .average-rating {
+            font-size: 22px;
+            font-weight: 600;
+            height: 35px;
+            width: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 50%;
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+            color: $white;
+            padding: 12px;
+            background: rgb(255, 132, 1);
+            background: linear-gradient(9deg, rgba(255, 132, 1, 1) 0%, rgba(255, 166, 0, 1) 100%);
+            box-shadow: $box-shadow;
+        }
+
+        .tag {
+            padding: 0 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+            color: $white;
+            background: $light-blue;
+            box-shadow: $box-shadow;
+        }
+    }
+
+    #movie-backdrop-img {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        letter-spacing: 1px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+
+    p {
+        margin-top: 0;
+    }
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import '../css/App.css'
 import { Row, Col } from 'react-grid-system'
+import Header from '../layout/Header'
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500/"
 
@@ -9,7 +10,8 @@ const MovieDetails = () => {
     const location = useLocation()
 
     return (
-        <div className="movie-details">
+        <div className="movie-details section">
+            <Header/>
             <div className="movie-backdrop-img" id="movie-backdrop-img" 
             style={{backgroundImage: `url(${IMG_BASE_URL + location.state.backdrop_path})`}}>
                 <div className="wrapper">

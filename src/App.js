@@ -1,11 +1,27 @@
 import React from 'react';
-import Header from './layout/Header';
-import './css/App.css';
+import { BrowserRouter as Router,Switch,Route} from "react-router-dom"
+import MovieDetails from "./components/MovieDetails"
+
+import Home from './components/pages/Home'
+import About from './components/pages/About'
+import Login from "./components/pages/Login"
+import SignUp from "./components/pages/SignUp"
+import { AuthProvider } from "./Auth"
 
 function App(){
   return (
     <>
-      <Header></Header>
+    <AuthProvider>
+      <Router>
+      <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/details" component={MovieDetails} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+          </Switch>
+      </Router>
+      </AuthProvider>
     </>
   );
 }

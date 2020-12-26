@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import MovieList from '../MovieList';
 import axios from 'axios'
+import app from '../../firebase'
+import Header from '../../layout/Header'
+import Footer from '../../layout/Footer'
 
-const API_KEY = "da007e76d36aca68e174f2948e09389c"
-const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY_MOVIEDB}&language=en-US&page=1`;
 
 function Home() {
     const [movies, setMovies] = useState([]);
@@ -21,9 +23,14 @@ function Home() {
 
     return (
         <div>
-            {movies ?
-            <MovieList movies={movies}></MovieList>
-             : <p>No movies</p>}
+            <div className="section">
+            <Header/>
+                <button onClick={() => app.auth().signOut()}>Sign out</button>
+                {movies ?
+                <MovieList movies={movies}></MovieList>
+                 : <p>No movies</p>}
+            </div>
+             <Footer/>
         </div>
     )
 }

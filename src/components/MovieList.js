@@ -5,7 +5,7 @@ import '../css/App.css'
 import axios from 'axios'
 import Footer from '../layout/Footer';
 
-const genresUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=da007e76d36aca68e174f2948e09389c&language=en-US"
+const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_MOVIEDB}&language=en-US`
 
 function MovieList(props) {
     const [genres, setGenres] = useState([]);

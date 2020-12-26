@@ -1,10 +1,16 @@
 import React from 'react'
+import Header from '../../layout/Header'
 
 function About() {
     return (
-        <div className="container">
-            <h1>About</h1>
+        <>
+        <div className="section">
+        <Header/>
+            <div className="container">
+                <h1>About</h1>
+            </div>
         </div>
+        </>
     )
 }
 

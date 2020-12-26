@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Col } from 'react-grid-system'
 import MovieDetails from './MovieDetails'
 import { useHistory, Route } from "react-router-dom";
@@ -24,7 +24,9 @@ function Movie({movie, genres}) {
             if (id === genre.id){
                 genreNames.push(genre.name)
             }
+            return true
         })
+        return true
     })
 
     const genresLen = genreNames.length

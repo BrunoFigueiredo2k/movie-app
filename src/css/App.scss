@@ -13,12 +13,17 @@ $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
 
 body {
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.section {
     background: rgb(30, 30, 48);
     background: linear-gradient(36deg, rgba(30, 30, 48, 1) 58%, rgba(54, 70, 105, 1) 100%);
     $color: $white;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
 }
 
 h1 {

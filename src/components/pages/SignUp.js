@@ -1,6 +1,10 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import app from "../../firebase";
+import '../../css/App.css'
+import { Link } from "react-router-dom"
+import { Container, Row, Col } from 'react-grid-system';
+import backgroundImg from '../../images/illustration-bg-watch-movies.jpg'
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(async event => {
@@ -17,20 +21,27 @@ const SignUp = ({ history }) => {
   }, [history]);
 
   return (
-    <div>
-      <h1>Sign up</h1>
-      <form onSubmit={handleSignUp}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+    <Container fluid="md">
+      <Row className="login">
+      <Col className="illustration" style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(30, 30, 48, 0.52), rgba(46, 175, 187, 0.7)), url(${backgroundImg})`, 
+        backgroundSize: '100%'}}>
+      </Col>
+        <Col className="container login-form middle">
+        <h2>Sign up</h2>
+        <form onSubmit={handleSignUp}>
+          <label for="email">Email</label>
+          <input name="email" type="email" placeholder="Email" required/>
+
+          <label for="password">Password</label>
+          <input name="password" type="password" placeholder="Password" required/>
+
+          <button type="submit">Sign up</button>
+        </form>
+        <p style={{textAlign: 'center'}}>Already have an account? <Link to="/login" className="link">Log in</Link></p>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

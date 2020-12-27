@@ -6,6 +6,7 @@ $white: #ffffff;
 $dark-blue: #1e1e30;
 $light-blue: #364669;
 $very-light-blue: #2eafbb;
+$super-light-blue: #0ceafa;
 $grey: #525e6c;
 
 $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
@@ -218,4 +219,88 @@ footer {
     padding: 40px 0;
     background-color: $light-blue;
     color: $white;
+}
+
+input {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid $white;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+.middle>* {
+    vertical-align: middle;
+}
+
+.login {
+    min-height: 100vh;
+
+    .illustration {
+        vertical-align: middle;
+        display: table-cell;
+        text-align: center;
+        padding: 4% 0;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+
+    &-form {
+        background: rgb(30, 30, 48);
+        background: linear-gradient(180deg, rgba(30, 30, 48, 1) 70%, rgb(46, 73, 129) 150%);
+        color: $white;
+        padding: 40px 80px !important;
+
+        h2 {
+            font-size: 46px;
+
+            &:after {
+                content: '';
+                display: block;
+                margin-top: 10px;
+                width: 10%;
+                height: 5px;
+                background-color: $super-light-blue;
+            }
+        }
+
+        label {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background: rgb(0, 0, 0);
+            background: linear-gradient(9deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 100%);
+            color: $super-light-blue;
+            width: 100%;
+            border: 3px solid $black;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: .3s ease;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+
+            &:hover {
+                cursor: pointer;
+                border: 3px solid $super-light-blue;
+                background-color: lighten;
+            }
+        }
+
+        .link {
+            color: $super-light-blue;
+            text-decoration: none;
+        }
+    }
 }

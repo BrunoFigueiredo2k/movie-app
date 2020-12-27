@@ -3,7 +3,7 @@ import Movie from './Movie';
 import { Container, Row } from 'react-grid-system';
 import '../css/App.css'
 import axios from 'axios'
-import Footer from '../layout/Footer';
+import Footer from './layout/Footer';
 
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_MOVIEDB}&language=en-US`
 
@@ -23,7 +23,7 @@ function MovieList(props) {
 
     return (
         <>
-        <Container fluid="md" className="movies-content container">
+        <Container fluid="md" className="movies-content">
             <Row>
                 {
                     props.movies.map(movie =>{
@@ -32,7 +32,6 @@ function MovieList(props) {
                 }
             </Row>
         </Container>
-        <Footer></Footer>
         </>
     )
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import '../css/App.css'
+import '../../css/App.css'
 import { Link } from "react-router-dom"
 
 export default function Header() {
@@ -13,7 +13,7 @@ export default function Header() {
                   </Link>
                 </li>
               <li>
-                <Link to="/" className="header-link">Popular</Link>
+                <Link to="/" className="header-link">Movies</Link>
               </li>
               <li>
                 <Link to="/about" className="header-link">About</Link>

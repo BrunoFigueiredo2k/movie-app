@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 import '../css/App.css'
 import { Row, Col } from 'react-grid-system'
-import Header from '../layout/Header'
+import Header from './layout/Header'
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500/"
 

@@ -2,7 +2,6 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../../firebase.js";
 import { AuthContext } from "../../Auth";
-import '../../css/App.css'
 import { Container, Row, Col } from 'react-grid-system';
 import illustration from '../../images/illustration-cinema.svg';
 import wave from '../../images/bg-wave.svg'

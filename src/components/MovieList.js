@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Movie from './Movie';
 import { Container, Row } from 'react-grid-system';
-import '../css/App.css'
 import axios from 'axios'
 
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_MOVIEDB}&language=en-US`

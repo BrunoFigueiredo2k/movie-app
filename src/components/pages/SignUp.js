@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 import app from "../../firebase";
-import '../../css/App.css'
 import { Link } from "react-router-dom"
 import { Container, Row, Col } from 'react-grid-system';
 import backgroundImg from '../../images/illustration-bg-watch-movies.jpg'

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../../css/App.css'
 import { IMG_BASE_URL, LOCAL_STORAGE_KEY } from '../../MovieDetails'
 
 export default function MyListTab() {

@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../css/App.css'
 import { Col, Row } from 'react-grid-system';
 
 function Footer() {

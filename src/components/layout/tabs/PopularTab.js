@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../../css/App.css'
 import MovieList from '../../MovieList'
 
 export default function PopularTab(props) {

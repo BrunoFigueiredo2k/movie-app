@@ -6,8 +6,7 @@ body {
 }
 
 .section {
-  background: #1e1e30;
-  background: linear-gradient(36deg, #1e1e30 58%, #364669 100%);
+  background-color: #1e1e30;
   min-height: 100vh;
   margin: 0;
   padding: 0;
@@ -318,5 +317,48 @@ input {
 .login-form .link {
   color: #0ceafa;
   text-decoration: none;
+}
+
+.btn-add {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  background-color: green;
+  color: #ffffff;
+}
+
+.btn-add:hover {
+  cursor: pointer;
+  background-color: #00b300;
+}
+
+.table-my-list {
+  border-collapse: collapse;
+  width: 100%;
+  color: #ffffff;
+}
+
+.table-my-list td,
+.table-my-list th {
+  border: 1px solid #293042;
+  text-align: left;
+  padding: 8px;
+}
+
+.table-my-list th {
+  background-color: #2e3447;
+  color: #2eafbb;
+}
+
+.table-my-list tr:nth-child(even) {
+  background-color: #353d4f;
+}
+
+.table-my-list tr {
+  background-color: #2e3447;
 }
 /*# sourceMappingURL=App.css.map */

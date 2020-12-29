@@ -2,8 +2,7 @@ import React from 'react'
 import { Col } from 'react-grid-system'
 import MovieDetails from './MovieDetails'
 import { useHistory, Route } from "react-router-dom";
-
-const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500"
+import { IMG_BASE_URL } from './MovieDetails'
 
 function Movie({movie, genres}) {
     const history = useHistory();

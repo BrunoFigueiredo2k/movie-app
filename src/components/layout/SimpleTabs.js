@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import '../../css/App.css'
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,9 +6,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MovieList from '../MovieList';
-import axios from 'axios'
+import PopularTab from './tabs/PopularTab'
+import MyListTab from './tabs/MyListTab'
 import app from '../../firebase'
+import axios from 'axios'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -49,6 +50,10 @@ export default function SimpleTabs() {
     const [value, setValue] = React.useState(0);
     const [movies, setMovies] = useState([]);
 
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
     useEffect(() => {
         axios.get(API_URL)
         .then(res => {
@@ -60,25 +65,6 @@ export default function SimpleTabs() {
         })
     }, []);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-    const PopularTab = (
-        <div className="container">
-            <h1>Popular movies <button onClick={() => app.auth().signOut()} style={{float: 'right'}}>Sign out</button></h1>
-            {movies ?
-            <MovieList movies={movies}></MovieList>
-                : <p>No movies</p>}
-        </div>
-    )
-
-    const MyListTab = (
-        <div className="container">
-            <h1>My List <button onClick={() => app.auth().signOut()} style={{float: 'right'}}>Sign out</button></h1>
-        </div>
-    )
-
     return (
         <div>
         <AppBar position="static">
@@ -88,11 +74,12 @@ export default function SimpleTabs() {
             </Tabs>
         </AppBar>
         <TabPanel value={value} index={0}>
-            {PopularTab}
+            <PopularTab movies={movies} />
         </TabPanel>
         <TabPanel value={value} index={1}>
-            {MyListTab}
+            <MyListTab movies={movies} />
         </TabPanel>
+        <button onClick={() => app.auth().signOut()} style={{float: 'right'}}>Sign out</button>
         </div>
     );
 }

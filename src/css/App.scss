@@ -8,9 +8,26 @@ $light-blue: #364669;
 $very-light-blue: #2eafbb;
 $super-light-blue: #0ceafa;
 $grey: #525e6c;
+$neon-pink: #fe019a;
 
 $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
 
+@mixin hoverEffect($color, $lighten: true) {
+    transition: .3s ease;
+    background-color: $color;
+
+    &:hover {
+        cursor: pointer;
+
+        @if ($lighten) {
+            background-color: lighten($color, 10%);
+        }
+
+        @else {
+            background-color: darken($color, 10%);
+        }
+    }
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -19,8 +36,7 @@ body {
 }
 
 .section {
-    background: rgb(30, 30, 48);
-    background: linear-gradient(36deg, rgba(30, 30, 48, 1) 58%, rgba(54, 70, 105, 1) 100%);
+    background-color: $dark-blue;
     $color: $white;
     min-height: 100vh;
     margin: 0;
@@ -320,5 +336,41 @@ input {
             color: $super-light-blue;
             text-decoration: none;
         }
+    }
+}
+
+.btn-add {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    @include hoverEffect(green, true);
+    color: $white;
+}
+
+.table-my-list {
+    border-collapse: collapse;
+    width: 100%;
+    color: $white;
+
+    td,
+    th {
+        border: 1px solid #293042;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #2e3447;
+        color: $very-light-blue;
+    }
+
+    tr:nth-child(even) {
+        background-color: #353d4f;
+    }
+
+    tr {
+        background-color: #2e3447;
     }
 }

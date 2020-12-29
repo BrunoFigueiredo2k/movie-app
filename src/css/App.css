@@ -13,8 +13,21 @@ body {
   padding: 0;
 }
 
+#about-section {
+  background: url("../images/deadpool.png");
+  background-color: #1e1e30;
+  background-size: 70%;
+  background-position: 60% 5%;
+  background-repeat: no-repeat;
+}
+
 h1 {
   color: #000000;
+}
+
+.paragraph {
+  line-height: 1.75em;
+  font-size: 18px;
 }
 
 .container {
@@ -213,8 +226,13 @@ h1 {
 
 footer {
   padding: 40px 0;
-  background-color: #364669;
   color: #ffffff;
+  position: relative;
+  background: url("../images/bg-wave-bottom.svg");
+  background-color: #1e1e30;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 input {

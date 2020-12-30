@@ -55,19 +55,21 @@ const MovieDetails = () => {
                     </Col>
                     <Col>
                         <ul className="movie-details-top-stats horizontal-ul">
-                            <li><p className="average-rating">{location.state.vote_average}</p></li>
+                            <li><span className="average-rating">{location.state.vote_average}</span></li>
                             <li><span style={{marginLeft: '-50px', fontSize: '18px', color: '#ccc'}}>/ {location.state.vote_count} votes</span></li>
                             <li><p className="tag">Popularity: <b>{Math.round(location.state.popularity)}</b></p></li>
                             <li><Button variant="success" onClick={() => setModalShow(true)}>Add to list</Button></li>
                         </ul>
-                        <p className="subtitle">Language:</p>
-                        <p className="description" style={{fontSize: '14px', textTransform: 'uppercase'}}>{location.state.original_language}</p>
-
-                        <p className="subtitle">Release date:</p>
-                        <p className="description" style={{fontSize: '14px'}}>{location.state.release_date}</p>
-
-                        <p className="subtitle">Description:</p>
-                        <p className="description" style={{fontSize: '14px'}}>{location.state.overview}</p>
+                        <div className="movie-details-bottom-stats">
+                            <p className="subtitle">Language:</p>
+                            <p className="description" style={{fontSize: '14px', textTransform: 'uppercase'}}>{location.state.original_language}</p>
+                            
+                            <p className="subtitle">Release date:</p>
+                            <p className="description" style={{fontSize: '14px'}}>{location.state.release_date}</p>
+                            
+                            <p className="subtitle">Description:</p>
+                            <p className="description" style={{fontSize: '14px'}}>{location.state.overview}</p>
+                        </div>
                     </Col>
                 </Row>
             </div>

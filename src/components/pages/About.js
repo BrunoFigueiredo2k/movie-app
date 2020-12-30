@@ -9,7 +9,7 @@ function About() {
         <div className="section" id="about-section">
         <Header/>
             <div className="container" style={{minHeight: '90vh'}}>
-                <h1 style={{textAlign: 'center', fontSize: '65px', padding: '50px'}}>About</h1>
+                <h1 style={{textAlign: 'center', fontSize: '65px', padding: '100px 0', color: 'white'}}>About</h1>
                 <Row style={{color: 'white'}}>
                     <Col lg={8}>
                         <h2 style={{fontSize: '30px'}}>What I used</h2>

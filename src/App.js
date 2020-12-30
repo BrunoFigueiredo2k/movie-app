@@ -6,7 +6,6 @@ import About from './components/pages/About'
 import Login from "./components/pages/Login"
 import SignUp from "./components/pages/SignUp"
 import { AuthProvider } from "./Auth"
-import "bootstrap/dist/css/bootstrap.min.css";
 import './css/App.css'
 
 function App(){

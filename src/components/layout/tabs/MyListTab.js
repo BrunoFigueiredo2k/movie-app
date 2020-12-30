@@ -11,14 +11,14 @@ export default function MyListTab() {
 
     return (
         <div className="container">
-            <h1>My List</h1>
+            <h1 className="heading-page">My List</h1>
             {/** TODO: fix display of my movies here */}
             <table className="table-my-list">
                 <tr>
                     <th style={{width: '20px', textAlign: 'center'}}>#</th>
                     <th style={{width: '70px', textAlign: 'center'}}>Image</th>
                     <th>Title</th>
-                    <th style={{width: '120px'}}>Average Rating</th>
+                    <th style={{width: '170px'}}>Average Rating</th>
                 </tr>
                 {myMovies.map((movie, index) => {
                     return(

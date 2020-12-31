@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { useLocation } from 'react-router-dom'
 import { Row, Col } from 'react-grid-system'
 import Header from './layout/Header'
-import uuidv4 from 'uuid/v4';
 import VerticallyCenteredModal from './layout/VerticallyCenteredModal'
 import Button from 'react-bootstrap/Button'
 
@@ -11,31 +10,7 @@ export const LOCAL_STORAGE_KEY = 'movieApp.movies';
 
 const MovieDetails = () => {
     const location = useLocation()
-    const [myMovies, setMyMovies] = useState([])
     const [modalShow, setModalShow] = useState(false);
-
-    useEffect(() =>{
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(myMovies))
-    }, [myMovies])
-
-    const getCurrentDate = () => {
-        var currentDate = new Date();
-        var dd = String(currentDate.getDate()).padStart(2, '0');
-        var mm = String(currentDate.getMonth() + 1).padStart(2, '0'); //January is 0
-        var yyyy = currentDate.getFullYear();
-
-        currentDate = mm + '/' + dd + '/' + yyyy;
-
-        return currentDate
-    }
-
-    const addMovieToList = (e) =>{
-        const movieItem = location.state;
-    
-        setMyMovies(prevMovies =>{
-            return [...prevMovies, {id: uuidv4(), movie: {movieItem}, date: getCurrentDate()}]
-        })
-    }
 
     return (
         <div className="movie-details section">
@@ -74,7 +49,7 @@ const MovieDetails = () => {
                 </Row>
             </div>
 
-            <VerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} />
+            <VerticallyCenteredModal show={modalShow} movie={location.state} onHide={() => setModalShow(false)} />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Movie from './Movie';
-import { Container, Row } from 'react-grid-system';
+import { Row } from 'react-grid-system';
 import axios from 'axios'
 
 const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_MOVIEDB}&language=en-US`
@@ -21,7 +21,7 @@ function MovieList(props) {
 
     return (
         <>
-        <Container fluid="md" className="movies-content">
+        <section fluid="md" className="movies-content">
             <Row>
                 {
                     props.movies.map(movie =>{
@@ -29,7 +29,7 @@ function MovieList(props) {
                     })
                 }
             </Row>
-        </Container>
+        </section>
         </>
     )
 }

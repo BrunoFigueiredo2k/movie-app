@@ -184,6 +184,14 @@
   display: inline-block;
 }
 
+.movie-details-top-stats:after {
+  content: '';
+  height: 1px;
+  background-color: rgba(204, 204, 204, 0.712);
+  display: block;
+  width: 100%;
+}
+
 .movie-details-top-stats .average-rating {
   font-size: 22px;
   font-weight: 700;
@@ -211,6 +219,10 @@
   background: #364669;
   -webkit-box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
+}
+
+.movie-details-bottom-stats {
+  padding-top: 20px;
 }
 
 .movie-details #movie-backdrop-img {

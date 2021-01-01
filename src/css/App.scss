@@ -211,6 +211,14 @@ $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
         line-height: 60px;
         display: inline-block;
 
+        &:after {
+            content: '';
+            height: 1px;
+            background-color: rgba(204, 204, 204, 0.712);
+            display: block;
+            width: 100%;
+        }
+
         .average-rating {
             font-size: 22px;
             font-weight: 700;
@@ -237,6 +245,10 @@ $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
             background: $light-blue;
             box-shadow: $box-shadow;
         }
+    }
+
+    &-bottom-stats {
+        padding-top: 20px;
     }
 
     #movie-backdrop-img {

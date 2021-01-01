@@ -8,26 +8,19 @@ import Button from 'react-bootstrap/Button'
 import uuidv4 from 'uuid/v4';
 import Form from 'react-bootstrap/Form'
 import LOCAL_STORAGE_KEY from '../MovieDetails'
+import AlertPositive from './AlertPositive'
+import {ALERT_POSITIVE_ADDED_CONTENT, watchStatus, ratings} from '../strings'
+import {getCurrentDate} from '../utils'
 
 export default function VerticallyCenteredModal(props) {
   const [myMovies, setMyMovies] = useState([])
   const [rating, setRating] = useState(null)
   const [status, setStatus] = useState('Watching')
+  const [addedToList, setAddedToList] = useState(false)
 
   useEffect(() =>{
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(myMovies))
   }, [myMovies])
-
-  const getCurrentDate = () => {
-    var currentDate = new Date();
-    var dd = String(currentDate.getDate()).padStart(2, '0');
-    var mm = String(currentDate.getMonth() + 1).padStart(2, '0'); //January is 0
-    var yyyy = currentDate.getFullYear();
-
-    currentDate = mm + '/' + dd + '/' + yyyy;
-
-    return currentDate
-  }
 
   const addMovieToList = (e) =>{
     const movieItem = props.movie;
@@ -35,14 +28,27 @@ export default function VerticallyCenteredModal(props) {
     setMyMovies(prevMovies =>{
         return [...prevMovies, {id: uuidv4(), movie: {movieItem}, userStats: {rating, status}, date: getCurrentDate()}]
     })
+
+    setAddedToList(true)
+  }
+  
+  const handleChangeDropdown = (type, value) => {
+    switch (type){
+      case "rating":
+        setRating(value)
+        break;
+      case "status":
+        setStatus(value)
+        console.log("status")
+        break;
+    }
   }
 
-  const ratings = ['(10) Masterpiece', '(9) Great', '(8) Very good', '(7) Good', '(6) Fine', '(5) Average', '(4) Bad', 
-  '(3) Very bad', '(2) Horrible', '(1) Appalling'];
-
-  const watchStatus = ['Watching', 'Completed', 'On-Hold', 'Dropped', 'Plan to Watch']
+  console.log(rating)
 
   return (
+    <>
+    {!addedToList ? 
     <Modal
       {...props}
       size="lg"
@@ -60,7 +66,7 @@ export default function VerticallyCenteredModal(props) {
           <Form.Control as="select">
           <option disabled selected>Select rating</option>
             {ratings.map(rating => {
-              return <option>{rating}</option>
+              return <option value={rating} key={rating} onClick={() => handleChangeDropdown('rating', rating)}>{rating}</option>
             })}
           </Form.Control><br/>
 
@@ -68,7 +74,7 @@ export default function VerticallyCenteredModal(props) {
           <Form.Control as="select">
             <option disabled selected>Select status</option>
             {watchStatus.map(status => {
-              return <option>{status}</option>
+              return <option value={status} key={status} onClick={() => handleChangeDropdown('status', status)}>{status}</option>
             })}
           </Form.Control>
         </Form>
@@ -77,5 +83,16 @@ export default function VerticallyCenteredModal(props) {
         <Button onClick={addMovieToList} variant="success">Add to list</Button>
       </ModalFooter>
     </Modal>
+     : 
+     <Modal
+     {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+     >
+     <AlertPositive details={{hideBtn: {display: true, route: '/'}, content: ALERT_POSITIVE_ADDED_CONTENT}}/>
+     </Modal>
+     }
+    </>
   );
 } 

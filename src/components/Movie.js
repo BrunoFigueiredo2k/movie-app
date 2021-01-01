@@ -2,7 +2,7 @@ import React from 'react'
 import { Col } from 'react-grid-system'
 import MovieDetails from './MovieDetails'
 import { useHistory, Route } from "react-router-dom";
-import { IMG_BASE_URL } from './MovieDetails'
+import { IMG_BASE_URL } from './strings'
 
 function Movie({movie, genres}) {
     const history = useHistory();

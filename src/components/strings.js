@@ -11,3 +11,8 @@ export const ALERT_POSITIVE_ADDED_CONTENT = {
 export const ratings = ['(10) Masterpiece', '(9) Great', '(8) Very good', '(7) Good', '(6) Fine', '(5) Average', '(4) Bad', 
 '(3) Very bad', '(2) Horrible', '(1) Appalling'];
 export const watchStatus = ['Watching', 'Completed', 'On-Hold', 'Dropped', 'Plan to Watch']
+
+export const COLORS_BORDER_LEFT_RATINGS = ['5px solid #35d60d', '5px solid #66ff00', '5px solid #99ff00', '5px solid #ccff00', '5px solid #FFFF00',
+'5px solid #FFCC00', '5px solid #ff9900', '5px solid #ff6600', '5px solid #FF3300', '5px solid #FF0000'];
+
+export const COLORS_BORDER_LEFT_STATUS = ['5px solid #2db039', '5px solid #26448f','5px solid #f9d457','5px solid #a12f31', '5px solid #c3c3c3']

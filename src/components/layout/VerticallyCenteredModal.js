@@ -7,17 +7,11 @@ import ModalTitle from "react-bootstrap/ModalTitle";
 import Button from 'react-bootstrap/Button'
 import uuidv4 from 'uuid/v4';
 import Form from 'react-bootstrap/Form'
-import LOCAL_STORAGE_KEY from '../MovieDetails'
 import AlertPositive from './AlertPositive'
-import {ALERT_POSITIVE_ADDED_CONTENT, watchStatus, ratings} from '../strings'
+import {LOCAL_STORAGE_KEY, ALERT_POSITIVE_ADDED_CONTENT, watchStatus, ratings, COLORS_BORDER_LEFT_RATINGS, COLORS_BORDER_LEFT_STATUS} from '../strings'
 import {getCurrentDate} from '../utils'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
-
-const COLORS_BORDER_LEFT_RATINGS = ['5px solid #35d60d', '5px solid #66ff00', '5px solid #99ff00', '5px solid #ccff00', '5px solid #FFFF00',
-'5px solid #FFCC00', '5px solid #ff9900', '5px solid #ff6600', '5px solid #FF3300', '5px solid #FF0000'];
-
-const COLORS_BORDER_LEFT_STATUS = ['5px solid #2db039', '5px solid #26448f','5px solid #f9d457','5px solid #a12f31', '5px solid #c3c3c3']
 
 export default function VerticallyCenteredModal(props) {
   const [myMovies, setMyMovies] = useState([])

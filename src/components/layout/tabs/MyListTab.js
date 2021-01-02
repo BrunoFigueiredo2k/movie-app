@@ -22,6 +22,16 @@ export default function MyListTab() {
         }
     }
 
+    const showRatingNumber = (rating) => {
+        // Check if the third character in the string is a 0, because if it is then the rating is 10
+        // else it will be the ')' bracket for which we have to return the second character in the string
+        if (rating.charAt(2) == "0"){
+            return rating.charAt(1) + rating.charAt(2)
+        } else {
+            return rating.charAt(1)
+        }
+    }
+
     console.log(myMovies)
     console.log(key)
 
@@ -45,7 +55,7 @@ export default function MyListTab() {
                     <th style={{width: '20px', textAlign: 'center'}}>#</th>
                     <th style={{width: '70px', textAlign: 'center'}}>Image</th>
                     <th>Title</th>
-                    <th style={{width: '100px'}}>Score</th>
+                    <th style={{width: '100px',  textAlign: 'center'}}>Score</th>
                 </tr>
                 </thead>
                 {myMovies.map((movie, index) => {
@@ -58,7 +68,9 @@ export default function MyListTab() {
                                 <td style={{color: '#ffd1df', textAlign: 'center', fontWeight: 'bold'}}>{index + 1}</td>
                                 <td><img src={IMG_BASE_URL + movie.movie.movieItem.poster_path} width={70} /></td>
                                 <td style={{fontWeight: 'bold', fontSize: '22px', letterSpacing: '1px'}}>{movie.movie.movieItem.original_title}</td>
-                                <td style={{fontWeight: 'bold', fontSize: '22px'}}>{movie.userStats.rating.charAt(1)}</td>
+                                <td style={{fontWeight: 'bold', fontSize: '22px', textAlign: 'center'}}>
+                                    {showRatingNumber(movie.userStats.rating)}
+                                </td>
                             </tr>
                             </tbody>
                         )

@@ -6,8 +6,14 @@ export default function MyListTab() {
 
     useEffect(() =>{
         const storedMovies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-        if (storedMovies) setMyMovies(storedMovies)
+        if (storedMovies){
+            setMyMovies(storedMovies)
+        } else {
+            console.log('ERROR: no movies in local storage')
+        }
     }, [])
+
+    console.log(myMovies)
 
     return (
         <div className="container">

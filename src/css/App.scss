@@ -32,6 +32,11 @@ $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
     }
 }
 
+.background-img-cover {
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .section {
     background-color: $dark-blue;
     $color: $white;
@@ -411,4 +416,21 @@ footer {
     tr {
         background-color: #2e3447;
     }
+}
+
+.carousel {
+
+    &-title {
+        font-size: 50px;
+        font-weight: 700;
+    }
+
+    &-description {
+        font-size: 20px;
+        line-height: 1.7em;
+    }
+}
+
+.MuiBox-root {
+    padding: 0 !important;
 }

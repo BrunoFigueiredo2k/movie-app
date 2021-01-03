@@ -72,7 +72,7 @@ export default function SimpleTabs() {
     }
 
     return (
-        <div>
+        <>
         <AppBar position="static">
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" className="container">
             <Tab label="Popular" {...a11yProps(0)} />
@@ -86,6 +86,6 @@ export default function SimpleTabs() {
             <MyListTab movies={movies} />
         </TabPanel>
         <button onClick={signOut} style={{float: 'right'}}>Sign out</button>
-        </div>
+        </>
     );
 }

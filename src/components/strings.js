@@ -1,5 +1,5 @@
 /** ALL STRINGS IN APP */
-export const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+export const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500"
 export const LOCAL_STORAGE_KEY = 'movieApp.movies';
 
 export const ALERT_POSITIVE_ADDED_CONTENT = {

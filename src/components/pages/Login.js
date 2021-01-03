@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'react-grid-system';
 import illustration from '../../images/illustration-cinema.svg';
 import wave from '../../images/bg-wave.svg'
 import { Link } from "react-router-dom"
+import PasswordInput from "../layout/PasswordInput"
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -43,8 +44,7 @@ const Login = ({ history }) => {
           <label for="email">Email</label>
           <input name="email" type="email" placeholder="Email" required/>
 
-          <label for="password">Password</label>
-          <input name="password" type="password" placeholder="Password" required/>
+          <PasswordInput />
 
           <button type="submit">Log in</button>
         </form>

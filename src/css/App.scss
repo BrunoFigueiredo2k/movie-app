@@ -336,8 +336,13 @@ footer {
         }
 
         label {
+            width: 100%;
             font-size: 24px;
             margin: 0;
+
+            .eye-icon-pw {
+                float: right !important;
+            }
         }
 
         input {

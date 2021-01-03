@@ -311,8 +311,13 @@ footer h2 {
 }
 
 .login-form label {
+  width: 100%;
   font-size: 24px;
   margin: 0;
+}
+
+.login-form label .eye-icon-pw {
+  float: right !important;
 }
 
 .login-form input {

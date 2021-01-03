@@ -9,6 +9,7 @@ import PopularTab from './tabs/PopularTab'
 import MyListTab from './tabs/MyListTab'
 import app from '../../firebase'
 import axios from 'axios'
+import { useHistory } from "react-router-dom";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -48,6 +49,7 @@ const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${process.en
 export default function SimpleTabs() {
     const [value, setValue] = React.useState(0);
     const [movies, setMovies] = useState([]);
+    let history = useHistory();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -64,6 +66,11 @@ export default function SimpleTabs() {
         })
     }, []);
 
+    const signOut = () => {
+        app.auth().signOut();
+        history.push("/login");
+    }
+
     return (
         <div>
         <AppBar position="static">
@@ -78,7 +85,7 @@ export default function SimpleTabs() {
         <TabPanel value={value} index={1}>
             <MyListTab movies={movies} />
         </TabPanel>
-        <button onClick={() => app.auth().signOut()} style={{float: 'right'}}>Sign out</button>
+        <button onClick={signOut} style={{float: 'right'}}>Sign out</button>
         </div>
     );
 }

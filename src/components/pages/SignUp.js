@@ -4,6 +4,7 @@ import app from "../../firebase";
 import { Link } from "react-router-dom"
 import { Container, Row, Col } from 'react-grid-system';
 import backgroundImg from '../../images/illustration-bg-watch-movies.jpg'
+import PasswordInput from "../layout/PasswordInput"
 
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(async event => {
@@ -32,8 +33,7 @@ const SignUp = ({ history }) => {
           <label for="email">Email</label>
           <input name="email" type="email" placeholder="Email" required/>
 
-          <label for="password">Password</label>
-          <input name="password" type="password" placeholder="Password" required/>
+          <PasswordInput />
 
           <button type="submit">Sign up</button>
         </form>

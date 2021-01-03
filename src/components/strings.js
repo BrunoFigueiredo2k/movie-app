@@ -8,6 +8,12 @@ export const ALERT_POSITIVE_ADDED_CONTENT = {
     button: "Got it!"
 }
 
+export const ALERT_WARNING_ADDED_CONTENT = {
+    title: "Already in your list!",
+    description: "The title you're trying to add is already in your list. To edit or view you movies go to 'Movies' under the 'My list' tab to view all your entries.",
+    button: "Close"
+}
+
 export const ratings = ['(10) Masterpiece', '(9) Great', '(8) Very good', '(7) Good', '(6) Fine', '(5) Average', '(4) Bad', 
 '(3) Very bad', '(2) Horrible', '(1) Appalling'];
 export const watchStatus = ['Watching', 'Completed', 'On-Hold', 'Dropped', 'Plan to Watch']

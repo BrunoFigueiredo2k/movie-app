@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState} from 'react'
 import Modal from "react-bootstrap/Modal";
 import ModalBody from "react-bootstrap/ModalBody";
 import ModalHeader from "react-bootstrap/ModalHeader";
@@ -7,33 +7,49 @@ import ModalTitle from "react-bootstrap/ModalTitle";
 import Button from 'react-bootstrap/Button'
 import uuidv4 from 'uuid/v4';
 import Form from 'react-bootstrap/Form'
-import AlertPositive from './AlertPositive'
-import {LOCAL_STORAGE_KEY, ALERT_POSITIVE_ADDED_CONTENT, watchStatus, ratings, COLORS_BORDER_LEFT_RATINGS, COLORS_BORDER_LEFT_STATUS} from '../strings'
+import AlertMessage from './AlertMessage'
+import {LOCAL_STORAGE_KEY, ALERT_POSITIVE_ADDED_CONTENT, watchStatus, ratings, COLORS_BORDER_LEFT_RATINGS, COLORS_BORDER_LEFT_STATUS, ALERT_WARNING_ADDED_CONTENT} from '../strings'
 import {getCurrentDate} from '../utils'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function VerticallyCenteredModal(props) {
-  const [myMovies, setMyMovies] = useState([])
   const [rating, setRating] = useState('Select your rating')
   const [status, setStatus] = useState('Watching')
   const [addedToList, setAddedToList] = useState(false)
-
-  useEffect(() =>{
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(myMovies))
-  }, [myMovies])
+  const [detailsAlertMessage, setDetailsAlertMessage] = useState()
 
   const addMovieToList = (e) =>{
     const movieItem = props.movie;
+    const movieObject = {id: uuidv4(), movie: {movieItem}, userStats: {rating, status}, date: getCurrentDate()}
+    let prevMovies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 
-    setMyMovies(prevMovies =>{
-        return [...prevMovies, {id: uuidv4(), movie: {movieItem}, userStats: {rating, status}, date: getCurrentDate}]
-    })
+    // If check on whether movie is in list returns false then display warning Alert and false else push to localstorage
+    if (!isMovieInList(prevMovies, movieItem)) {
+      setDetailsAlertMessage({hideBtn: {display: true, route: '/'}, content: ALERT_WARNING_ADDED_CONTENT, variant: 'danger'})
+    } else {
+      setDetailsAlertMessage({hideBtn: {display: true, route: '/'}, content: ALERT_POSITIVE_ADDED_CONTENT, variant: 'success'})
+      // Push movie to localstorage
+      prevMovies.push(movieObject);
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(prevMovies));
+    }
 
     setAddedToList(true)
   }
 
-  console.log(myMovies)
+  const isMovieInList = (storedMovies, toAddMovie) => {
+    let inList;
+    storedMovies.some(movie => {
+      if (movie.movie.movieItem.id == toAddMovie.id) {
+        inList = true
+        return true // break out of loop
+      } else {
+        inList = false
+      }
+    })
+
+    if (inList) { return false } else { return true }
+  }
 
   // Returns dropdown item with corresponding border left color
   const setColorDropdownItems = (value, type) => {
@@ -99,7 +115,7 @@ export default function VerticallyCenteredModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
      >
-     <AlertPositive details={{hideBtn: {display: true, route: '/'}, content: ALERT_POSITIVE_ADDED_CONTENT}}/>
+     <AlertMessage details={detailsAlertMessage}/>
      </Modal>
      }
     </>

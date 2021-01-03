@@ -5,7 +5,7 @@ import Tab from 'react-bootstrap/Tab'
 
 export default function MyListTab() {
     const [myMovies, setMyMovies] = useState([])
-    const [key, setKey] = useState('Watching');
+    const [key, setKey] = useState('All');
 
     useEffect(() =>{
         const storedMovies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
@@ -32,9 +32,6 @@ export default function MyListTab() {
         }
     }
 
-    console.log(myMovies)
-    console.log(key)
-
     return (
         <div className="container">
             <h1 className="heading-page">My List</h1>
@@ -55,6 +52,7 @@ export default function MyListTab() {
                     <th style={{width: '20px', textAlign: 'center'}}>#</th>
                     <th style={{width: '70px', textAlign: 'center'}}>Image</th>
                     <th>Title</th>
+                    <th style={{width: '120px'}}>Date added</th>
                     <th style={{width: '100px',  textAlign: 'center'}}>Score</th>
                 </tr>
                 </thead>
@@ -68,6 +66,7 @@ export default function MyListTab() {
                                 <td style={{color: '#ffd1df', textAlign: 'center', fontWeight: 'bold'}}>{index + 1}</td>
                                 <td><img src={IMG_BASE_URL + movie.movie.movieItem.poster_path} width={70} /></td>
                                 <td style={{fontWeight: 'bold', fontSize: '22px', letterSpacing: '1px'}}>{movie.movie.movieItem.original_title}</td>
+                                <td style={{fontSize: '16px'}}>{movie.date}</td>
                                 <td style={{fontWeight: 'bold', fontSize: '22px', textAlign: 'center'}}>
                                     {showRatingNumber(movie.userStats.rating)}
                                 </td>

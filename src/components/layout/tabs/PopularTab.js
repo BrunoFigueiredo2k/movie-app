@@ -2,6 +2,7 @@ import React from 'react'
 import MovieList from '../../MovieList'
 import Carousel from 'react-bootstrap/Carousel'
 import { IMG_BASE_URL } from '../../strings'
+import SearchBar from '../../SearchBar'
 
 export default function PopularTab(props) {
     console.log(props)
@@ -33,6 +34,7 @@ export default function PopularTab(props) {
         </Carousel> : null}
         <div className="container">
             <h1 className="heading-page" style={{paddingTop: '30px'}}>Popular movies</h1>
+            <SearchBar/>
             {props.movies ?
             <MovieList movies={props.movies}></MovieList>
                 : <p>No movies</p>}

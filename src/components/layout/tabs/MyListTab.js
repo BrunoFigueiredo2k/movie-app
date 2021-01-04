@@ -25,7 +25,7 @@ export default function MyListTab() {
     const showRatingNumber = (rating) => {
         // Check if the third character in the string is a 0, because if it is then the rating is 10
         // else it will be the ')' bracket for which we have to return the second character in the string
-        if (rating.charAt(2) == "0"){
+        if (rating.charAt(2) === "0"){
             return rating.charAt(1) + rating.charAt(2)
         } else {
             return rating.charAt(1)
@@ -60,7 +60,7 @@ export default function MyListTab() {
                     </thead>
                     {myMovies.map((movie, index) => {
                         // If movie status is equal to current key that is set by tab, then display. Also display everything for key 'All movies'
-                        if (movie.userStats.status == key || key == "All"){
+                        if (movie.userStats.status === key || key === "All"){
                             return (
                                 <tbody>
                                 <tr>

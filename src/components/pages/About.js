@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../layout/Header'
 import Footer from '../layout/Footer'
 import { Row, Col } from 'react-grid-system';
+import {watchStatus, COLORS_BORDER_LEFT_STATUS} from '../strings'
 
 function About() {
     return (
@@ -18,6 +19,32 @@ function About() {
                     <Col style={{textAlign: 'center'}}>
                         <img src="https://pbs.twimg.com/profile_images/1243623122089041920/gVZIvphd_400x400.jpg" 
                         style={{border: '10px double #0ceafa', borderRadius: '50%', height: '250px', boxShadow: '0 0 10px 2px rgba(0, 0, 0, 0.26)'}}/>
+                    </Col>
+                </Row>
+                <Row style={{color: 'white', marginTop: '60px'}}>
+                    <Col>
+                        <h2 style={{fontSize: '30px'}}>Legend watch status colors</h2>
+                        <p className="paragraph">This is a legend for the colors of the watch status used in the 'My list' table.</p>
+                        <table className="table-my-list table-legend-about" style={{width: '30% !important'}}>
+                            <thead>
+                            <tr>
+                                <th style={{width: '5%'}}>Color</th>
+                                <th>Meaning</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {watchStatus.map((status, i) => {
+                                    console.log(status)
+                                    console.log(i)
+                                    return (
+                                    <tr>
+                                        <td style={{backgroundColor: COLORS_BORDER_LEFT_STATUS[i].slice(COLORS_BORDER_LEFT_STATUS[i].length - 7)}}></td>
+                                        <td style={{fontWeight: 'bold'}}>{status}</td>
+                                    </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
                     </Col>
                 </Row>
             </div>

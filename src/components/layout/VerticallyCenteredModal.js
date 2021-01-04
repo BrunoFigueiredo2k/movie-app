@@ -40,7 +40,7 @@ export default function VerticallyCenteredModal(props) {
   const isMovieInList = (storedMovies, toAddMovie) => {
     let inList;
     storedMovies.some(movie => {
-      if (movie.movie.movieItem.id == toAddMovie.id) {
+      if (movie.movie.movieItem.id === toAddMovie.id) {
         inList = true
         return true // break out of loop
       } else {

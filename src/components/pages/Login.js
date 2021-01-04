@@ -17,7 +17,7 @@ const Login = ({ history }) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/movies");
       } catch (error) {
         alert(error);
       }
@@ -27,9 +27,9 @@ const Login = ({ history }) => {
 
   const { currentUser } = useContext(AuthContext);
 
-  // If we have current user redirect to root path (home page)
+  // If we have current user redirect to movies page
   if (currentUser) {
-    return <Redirect to="/" />;
+    return <Redirect to="/movies" />;
   }
 
   return (

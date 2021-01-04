@@ -32,6 +32,12 @@ $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
     }
 }
 
+@mixin mobile {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
 .background-img-cover {
     background-repeat: no-repeat;
     background-size: cover;
@@ -77,6 +83,10 @@ $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
     &:focus {
         outline: none;
     }
+}
+
+body {
+    overflow-x: hidden !important;
 }
 
 .horizontal-ul {
@@ -437,4 +447,80 @@ footer {
 
 .MuiBox-root {
     padding: 0 !important;
+}
+
+.landing-page {
+    height: 100vh;
+    max-height: 100vh;
+    background: url('https://image.freepik.com/free-vector/cinema-movie-concept_1302-12571.jpg');
+    background-size: cover;
+    color: $white;
+
+    .wrapper {
+        background: rgba(159, 45, 131, 0.418);
+        background: linear-gradient(100deg, rgba(159, 45, 130, .5) 0%, rgba(41, 34, 102, .75) 100%);
+
+        @include mobile {
+            padding: 0 0 40px 0;
+        }
+
+        .container {
+            padding-top: 10%;
+            // -ms-transform: translateY(50%);
+            // transform: translateY(50%);
+        }
+
+        h1 {
+            font-size: 50px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 20px;
+            line-height: 1.7em;
+        }
+
+        .img-col {
+            @include mobile {
+                display: none;
+            }
+
+            img {
+                margin-top: -100px;
+                margin-left: -100px;
+                margin-right: -30px;
+                -webkit-filter: drop-shadow(5px 5px 15px #d486ba9a);
+                filter: drop-shadow(5px 5px 15px #d486ba9a);
+            }
+        }
+
+        .cta {
+            background-color: #d486ba;
+            border-radius: 5px;
+            text-transform: uppercase;
+            color: $white;
+            font-weight: 700;
+            padding: 12px 50px;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            transition: .3s ease;
+            margin-right: 20px;
+            text-decoration: none;
+
+            &:hover {
+                background-color: darken(#d486ba, 10%);
+            }
+        }
+
+        .cta-outline {
+            background-color: transparent;
+            border: 2px solid #d486ba;
+
+            &:hover {
+                background-color: #d486ba;
+            }
+        }
+    }
 }

@@ -12,7 +12,7 @@ export default function Header() {
                   </Link>
                 </li>
               <li>
-                <Link to="/" className="header-link">Movies</Link>
+                <Link to="/movies" className="header-link">Movies</Link>
               </li>
               <li>
                 <Link to="/about" className="header-link">About</Link>

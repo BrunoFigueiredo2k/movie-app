@@ -42,6 +42,10 @@
   outline: none;
 }
 
+body {
+  overflow-x: hidden !important;
+}
+
 .horizontal-ul {
   list-style-type: none;
   margin: 0;
@@ -415,5 +419,82 @@ footer h2 {
 
 .MuiBox-root {
   padding: 0 !important;
+}
+
+.landing-page {
+  height: 100vh;
+  max-height: 100vh;
+  background: url("https://image.freepik.com/free-vector/cinema-movie-concept_1302-12571.jpg");
+  background-size: cover;
+  color: #ffffff;
+}
+
+.landing-page .wrapper {
+  background: rgba(159, 45, 131, 0.418);
+  background: linear-gradient(100deg, rgba(159, 45, 130, 0.5) 0%, rgba(41, 34, 102, 0.75) 100%);
+}
+
+@media (max-width: 767px) {
+  .landing-page .wrapper {
+    padding: 0 0 40px 0;
+  }
+}
+
+.landing-page .wrapper .container {
+  padding-top: 10%;
+}
+
+.landing-page .wrapper h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.landing-page .wrapper p {
+  font-size: 20px;
+  line-height: 1.7em;
+}
+
+@media (max-width: 767px) {
+  .landing-page .wrapper .img-col {
+    display: none;
+  }
+}
+
+.landing-page .wrapper .img-col img {
+  margin-top: -100px;
+  margin-left: -100px;
+  margin-right: -30px;
+  -webkit-filter: drop-shadow(5px 5px 15px #d486ba9a);
+  filter: drop-shadow(5px 5px 15px #d486ba9a);
+}
+
+.landing-page .wrapper .cta {
+  background-color: #d486ba;
+  border-radius: 5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 12px 50px;
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.landing-page .wrapper .cta:hover {
+  background-color: #c760a5;
+}
+
+.landing-page .wrapper .cta-outline {
+  background-color: transparent;
+  border: 2px solid #d486ba;
+}
+
+.landing-page .wrapper .cta-outline:hover {
+  background-color: #d486ba;
 }
 /*# sourceMappingURL=App.css.map */

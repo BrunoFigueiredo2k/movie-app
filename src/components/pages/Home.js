@@ -11,7 +11,7 @@ function Home() {
                         <Col className="img-col"><img src="https://freesvg.org/img/hotpopcornmovie.png"/></Col>
                         <Col>
                         <h1>Get a grip on your movie watch list!</h1>
-                    <p>Lorem ipsum is een opvultekst die drukkers, zetters, grafisch ontwerpers en dergelijken gebruiken om te kijken hoe een opmaak er grafisch uitziet. De eerste woorden van de tekst luiden doorgaans</p>
+                        <p>This app will make your life easier as you'll be able to keep track of your watched movies to prevent confusion! Find your <b style={{textDecoration: 'underline'}}>favorite movies</b> and add them to your (wish)list signing up or logging into your account. </p>
                         <Link to="/signup" className="cta">Signup</Link> or <Link to="/login" style={{marginLeft: '20px'}} className="cta cta-outline">Login</Link>
                         </Col>
                     </Row>

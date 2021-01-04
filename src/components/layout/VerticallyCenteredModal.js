@@ -26,9 +26,9 @@ export default function VerticallyCenteredModal(props) {
 
     // If check on whether movie is in list returns false then display warning Alert and false else push to localstorage
     if (!isMovieInList(prevMovies, movieItem)) {
-      setDetailsAlertMessage({hideBtn: {display: true, route: '/'}, content: ALERT_WARNING_ADDED_CONTENT, variant: 'danger'})
+      setDetailsAlertMessage({hideBtn: {display: true, route: '/movies'}, content: ALERT_WARNING_ADDED_CONTENT, variant: 'danger'})
     } else {
-      setDetailsAlertMessage({hideBtn: {display: true, route: '/'}, content: ALERT_POSITIVE_ADDED_CONTENT, variant: 'success'})
+      setDetailsAlertMessage({hideBtn: {display: true, route: '/movies'}, content: ALERT_POSITIVE_ADDED_CONTENT, variant: 'success'})
       // Push movie to localstorage
       prevMovies.push(movieObject);
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(prevMovies));

@@ -11,7 +11,7 @@ function About() {
         <Header/>
             <div className="container" style={{minHeight: '90vh'}}>
                 <h1 style={{textAlign: 'center', fontSize: '65px', padding: '100px 0', color: 'white'}}>About</h1>
-                <Row style={{color: 'white'}}>
+                <Row style={{color: 'white', marginBottom: '60px'}}>
                     <Col lg={8}>
                         <h2 style={{fontSize: '30px'}}>What I used</h2>
                         <p className="paragraph">For this React movie app I used TMDB API to fetch the most popular movies at the moment. <br/><br/> The Movie Database (TMDb) is a community built movie and TV database. Every piece of data has been added by the community dating back to 2008. TMDb's strong international focus and breadth of data is largely unmatched and very impressive.</p>
@@ -21,15 +21,15 @@ function About() {
                         style={{border: '10px double #0ceafa', borderRadius: '50%', height: '250px', boxShadow: '0 0 10px 2px rgba(0, 0, 0, 0.26)'}}/>
                     </Col>
                 </Row>
-                <Row style={{color: 'white', marginTop: '60px'}}>
+                <Row style={{color: 'white', marginTop: '60px', marginBottom: '60px'}}>
                     <Col>
                         <h2 style={{fontSize: '30px'}}>Legend watch status colors</h2>
                         <p className="paragraph">This is a legend for the colors of the watch status used in the 'My list' table.</p>
-                        <table className="table-my-list table-legend-about" style={{width: '30% !important'}}>
+                        <table className="table-my-list table-legend-about">
                             <thead>
                             <tr>
                                 <th style={{width: '5%'}}>Color</th>
-                                <th>Meaning</th>
+                                <th>Status</th>
                             </tr>
                             </thead>
                             <tbody>

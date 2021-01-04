@@ -392,11 +392,15 @@ footer h2 {
 }
 
 .table-my-list tr:nth-child(even) {
-  background-color: #353d4f;
+  background-color: #2e3447;
 }
 
 .table-my-list tr {
-  background-color: #2e3447;
+  background-color: #353d4f;
+}
+
+.table-legend-about {
+  width: 40%;
 }
 
 .carousel-title {

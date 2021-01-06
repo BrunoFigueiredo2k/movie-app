@@ -8,7 +8,7 @@ function Home() {
             <div className="wrapper">
                 <div className="container">
                     <Row>
-                        <Col className="img-col"><img src="https://freesvg.org/img/hotpopcornmovie.png"/></Col>
+                        <Col className="img-col"><img src="https://i.pinimg.com/originals/1b/cd/fa/1bcdfa255e6dc496a5ebd759136f4b56.png"/></Col>
                         <Col>
                         <h1>Get a grip on your movie watch list!</h1>
                         <p>This app will make your life easier as you'll be able to keep track of your watched movies to prevent confusion! Find your <b style={{textDecoration: 'underline'}}>favorite movies</b> and add them to your (wish)list signing up or logging into your account. </p>

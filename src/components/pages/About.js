@@ -21,8 +21,10 @@ function About() {
                         style={{border: '10px double #0ceafa', borderRadius: '50%', height: '250px', boxShadow: '0 0 10px 2px rgba(0, 0, 0, 0.26)'}}/>
                     </Col>
                 </Row>
-                <Row style={{color: 'white', marginTop: '60px', marginBottom: '60px'}}>
-                    <Col>
+                <Row style={{color: 'white', margin: '10% 0', marginBottom: '60px'}}>
+                <Col style={{verticalAlign: 'middle', display: 'table-cell'}}><img src="https://media.makeameme.org/created/you-are-a-fc227c48b8.jpg" 
+                    style={{height: '300px', boxShadow: '0 0 10px 2px rgba(0, 0, 0, 0.26)', borderRadius: '20px', marginTop: '50px'}}/></Col>
+                    <Col lg={7}>
                         <h2 style={{fontSize: '30px'}}>Legend watch status colors</h2>
                         <p className="paragraph">This is a legend for the colors of the watch status used in the 'My list' table.</p>
                         <table className="table-my-list table-legend-about">

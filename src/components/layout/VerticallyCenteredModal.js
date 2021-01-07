@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 import uuidv4 from 'uuid/v4';
 import Form from 'react-bootstrap/Form'
 import AlertMessage from './AlertMessage'
-import {LOCAL_STORAGE_KEY, ALERT_POSITIVE_ADDED_CONTENT, watchStatus, ratings, COLORS_BORDER_LEFT_RATINGS, COLORS_BORDER_LEFT_STATUS, ALERT_WARNING_ADDED_CONTENT} from '../strings'
+import {ALERT_POSITIVE_ADDED_CONTENT, watchStatus, ratings, COLORS_BORDER_LEFT_RATINGS, COLORS_BORDER_LEFT_STATUS, ALERT_WARNING_ADDED_CONTENT} from '../strings'
 import {getCurrentDate} from '../utils'
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown'
@@ -22,7 +22,7 @@ export default function VerticallyCenteredModal(props) {
   const addMovieToList = (e) =>{
     const movieItem = props.movie;
     const movieObject = {id: uuidv4(), movie: {movieItem}, userStats: {rating, status}, date: getCurrentDate()}
-    let prevMovies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
+    let prevMovies = JSON.parse(localStorage.getItem(props.movie.id)) || [];
 
     // If check on whether movie is in list returns false then display warning Alert and false else push to localstorage
     if (!isMovieInList(prevMovies, movieItem)) {
@@ -31,7 +31,7 @@ export default function VerticallyCenteredModal(props) {
       setDetailsAlertMessage({hideBtn: {display: true, route: '/movies'}, content: ALERT_POSITIVE_ADDED_CONTENT, variant: 'success'})
       // Push movie to localstorage
       prevMovies.push(movieObject);
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(prevMovies));
+      localStorage.setItem(props.movie.id, JSON.stringify(prevMovies));
     }
 
     setAddedToList(true)

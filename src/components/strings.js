@@ -22,3 +22,9 @@ export const COLORS_BORDER_LEFT_RATINGS = ['5px solid #35d60d', '5px solid #66ff
 '5px solid #FFCC00', '5px solid #ff9900', '5px solid #ff6600', '5px solid #FF3300', '5px solid #FF0000'];
 
 export const COLORS_BORDER_LEFT_STATUS = ['5px solid #2db039', '5px solid #26448f','5px solid #f9d457','5px solid #a12f31', '5px solid #c3c3c3']
+
+export const deleteMovieContent = {
+    title: "Are you sure you want to delete this movie from your list?",
+    description: "Warning: this action cannot be undone. You can however, add this movie back to your list later on if you wish to do so.",
+    btnTxt: "Delete"
+}

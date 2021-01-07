@@ -1,16 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { IMG_BASE_URL, LOCAL_STORAGE_KEY, watchStatus, COLORS_BORDER_LEFT_STATUS } from '../../strings'
+import { IMG_BASE_URL, watchStatus, COLORS_BORDER_LEFT_STATUS, deleteMovieContent } from '../../strings'
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
+import ModalAction from '../ModalAction'
 
-export default function MyListTab() {
+export default function MyListTab(props) {
     const [myMovies, setMyMovies] = useState([])
     const [key, setKey] = useState('All');
+    const [modalShow, setModalShow] = useState(false);
+    const [delMovie, setDelMovie] = useState(null)
+
+    let ids = [];
+    let movies = []
 
     useEffect(() =>{
-        const storedMovies = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
-        console.log(storedMovies)
-        if (storedMovies) setMyMovies(storedMovies)
+        // Loop through all movies and add ids to list
+        props.movies.map(movie => {
+            ids.push(movie.id)
+        })
+
+        // Loop through all ids and getItems from localstorage based on id, if this doesn't return null then add movie to list
+        ids.map(id => {
+            let storedMovie = JSON.parse(localStorage.getItem(id.toString()))
+            if (storedMovie != null) movies.push(storedMovie[0])
+        })
+
+        // Loop through all added movies and set movies to state
+        setMyMovies(movies)
     }, [])
 
     const determineColorStatus = (statusWatching) => {
@@ -31,6 +47,19 @@ export default function MyListTab() {
             return rating.charAt(1)
         }
     }
+
+    // TODO: figure out how to remove 
+    const deleteMovie = (id, movies) => {
+        movies.some(movie => {
+            if (id == movie.movie.movieItem.id) {
+                localStorage.removeItem(id)
+                return true
+            }
+        })
+        console.log('deleted')
+    }
+
+    console.log(myMovies)
 
     return (
         <div className="container">
@@ -56,9 +85,12 @@ export default function MyListTab() {
                         <th>Title</th>
                         <th style={{width: '120px'}}>Date added</th>
                         <th style={{width: '100px',  textAlign: 'center'}}>Score</th>
+                        <th></th>
                     </tr>
                     </thead>
                     {myMovies.map((movie, index) => {
+                        console.log(movie)
+                        console.log(key)
                         // If movie status is equal to current key that is set by tab, then display. Also display everything for key 'All movies'
                         if (movie.userStats.status === key || key === "All"){
                             return (
@@ -72,6 +104,12 @@ export default function MyListTab() {
                                     <td style={{fontWeight: 'bold', fontSize: '22px', textAlign: 'center'}}>
                                         {showRatingNumber(movie.userStats.rating)}
                                     </td>
+                                    <td style={{width: '10px', padding: '0 20px'}}>
+                                        <i class="fa fa-trash delete-trash-icon" aria-hidden="true" onClick={() => {
+                                            setModalShow(true);
+                                            setDelMovie(movie.movie.movieItem);
+                                        }}></i>
+                                    </td>
                                 </tr>
                                 </tbody>
                             )
@@ -83,6 +121,14 @@ export default function MyListTab() {
             <p style={{color: 'white'}}>No movies in your list yet...</p><br/>
             <img src="https://i.imgur.com/sUpua6W.gif"/>
             </>}
+
+            <ModalAction
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            movie={delMovie}
+            movies={myMovies}
+            function={deleteMovie}
+            content={{title: deleteMovieContent.title, description: deleteMovieContent.description, btnTxt: deleteMovieContent.btnTxt}} />
         </div>
     )
 }

@@ -497,4 +497,15 @@ footer h2 {
 .landing-page .wrapper .cta-outline:hover {
   background-color: #d486ba;
 }
+
+.delete-trash-icon {
+  color: #f55448;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.delete-trash-icon:hover {
+  cursor: pointer;
+  color: #f88178;
+}
 /*# sourceMappingURL=App.css.map */

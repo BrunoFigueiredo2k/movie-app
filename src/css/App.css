@@ -486,6 +486,7 @@ footer h2 {
 }
 
 .landing-page .wrapper .cta:hover {
+  border-radius: 40px;
   background-color: #c760a5;
 }
 

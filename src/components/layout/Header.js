@@ -7,7 +7,7 @@ export default function Header() {
         <div className="container">
             <ul>
                 <li>
-                  <Link to="/" className="header-link">
+                  <Link to="/movies" className="header-link">
                   <h1 style={{margin: '0'}}>Movie App</h1>
                   </Link>
                 </li>

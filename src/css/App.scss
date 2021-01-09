@@ -525,6 +525,7 @@ footer {
             text-decoration: none;
 
             &:hover {
+                border-radius: 40px;
                 background-color: darken(#d486ba, 10%);
             }
         }

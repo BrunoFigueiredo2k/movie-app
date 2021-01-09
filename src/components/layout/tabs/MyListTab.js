@@ -8,7 +8,7 @@ export default function MyListTab(props) {
     const [myMovies, setMyMovies] = useState([])
     const [key, setKey] = useState('All');
     const [modalShow, setModalShow] = useState(false);
-    const [delMovie, setDelMovie] = useState(null)
+    const [delMovie, setDelMovie] = useState(null);
 
     let ids = [];
     let movies = []
@@ -27,7 +27,7 @@ export default function MyListTab(props) {
 
         // Loop through all added movies and set movies to state
         setMyMovies(movies)
-    }, [])
+    }, [myMovies])
 
     const determineColorStatus = (statusWatching) => {
         for (let i = 0; i < watchStatus.length; i++){
@@ -48,15 +48,9 @@ export default function MyListTab(props) {
         }
     }
 
-    // TODO: figure out how to remove 
-    const deleteMovie = (id, movies) => {
-        movies.some(movie => {
-            if (id == movie.movie.movieItem.id) {
-                localStorage.removeItem(id)
-                return true
-            }
-        })
-        console.log('deleted')
+    const handleClickDelete = (movie) => {
+        setDelMovie(movie)
+        setModalShow(true)
     }
 
     console.log(myMovies)
@@ -105,10 +99,7 @@ export default function MyListTab(props) {
                                         {showRatingNumber(movie.userStats.rating)}
                                     </td>
                                     <td style={{width: '10px', padding: '0 20px'}}>
-                                        <i class="fa fa-trash delete-trash-icon" aria-hidden="true" onClick={() => {
-                                            setModalShow(true);
-                                            setDelMovie(movie.movie.movieItem);
-                                        }}></i>
+                                        <i className="fa fa-trash delete-trash-icon" aria-hidden="true" onClick={() => { handleClickDelete(movie.movie) }}></i>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -122,13 +113,14 @@ export default function MyListTab(props) {
             <img src="https://i.imgur.com/sUpua6W.gif"/>
             </>}
 
-            <ModalAction
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-            movie={delMovie}
-            movies={myMovies}
-            function={deleteMovie}
-            content={{title: deleteMovieContent.title, description: deleteMovieContent.description, btnTxt: deleteMovieContent.btnTxt}} />
+            {modalShow ?
+                <ModalAction
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                movie={delMovie}
+                movies={myMovies}
+                content={{title: deleteMovieContent.title, description: deleteMovieContent.description, btnTxt: deleteMovieContent.btnTxt}} />
+            : null}
         </div>
     )
 }

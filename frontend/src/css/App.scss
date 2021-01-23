@@ -1,0 +1,541 @@
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$font-family: 'Poppins',
+sans-serif;
+
+$black: #000000;
+$white: #ffffff;
+$dark-blue: #1e1e30;
+$light-blue: #364669;
+$very-light-blue: #2eafbb;
+$super-light-blue: #0ceafa;
+$grey: #525e6c;
+$neon-pink: #fe019a;
+
+$box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
+
+@mixin hoverEffect($color, $lighten: true, $background: true) {
+  transition: .3s ease;
+
+  @if ($background) {
+    background-color: $color;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    @if ($background) {
+      @if ($lighten) {
+        background-color: lighten($color, 10%);
+      } @else {
+        background-color: darken($color, 10%);
+      }
+    } @else {
+      @if ($lighten) {
+        color: lighten($color, 10%);
+      } @else {
+        color: darken($color, 10%);
+      }
+    }
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+.background-img-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.section {
+  background-color: $dark-blue;
+  $color: $white;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  font-family: $font-family !important;
+}
+
+#about-section {
+  background: url('../images/deadpool.png');
+  background-color: $dark-blue;
+  background-size: 70%;
+  background-position: 60% 5%;
+  background-repeat: no-repeat;
+}
+
+.paragraph {
+  line-height: 1.75em;
+  font-size: 18px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 80%;
+  font-family: $font-family !important;
+
+  .heading-page {
+    font-size: 34px;
+    font-weight: 600;
+    margin: 20px 0;
+    color: $white !important;
+  }
+}
+
+.MuiTab-textColorInherit {
+  &:focus {
+    outline: none;
+  }
+}
+
+body {
+  overflow-x: hidden !important;
+}
+
+.horizontal-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin-right: 60px;
+
+    a {
+      color: $white;
+      text-decoration: none;
+      transition: .3s ease;
+
+      &:hover {
+        color: $very-light-blue;
+      }
+    }
+  }
+}
+
+.header {
+  padding: 20px 0;
+  background-color: $black;
+  font-family: $font-family !important;
+
+  &-link {
+    text-decoration: none;
+    transition: .3s ease;
+
+    &:hover {
+      color: $very-light-blue !important;
+      text-decoration: none;
+    }
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      color: #2eafbb;
+      margin-right: 20px;
+    }
+  }
+
+  a,
+  h1 {
+    color: $white !important;
+  }
+
+  h1 {
+    font-size: 34px;
+    font-weight: 700;
+  }
+}
+
+.movies-content {
+  padding: 30px 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.7em;
+}
+
+.card-movie {
+  width: 250px;
+  height: 500px;
+  padding-bottom: 20px;
+
+  .poster-img {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.26);
+    transition: 0.3s;
+    width: 100%;
+    margin: 0 !important;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.411);
+    }
+  }
+
+  .title {
+    margin: 5px 0 10px 0;
+    font-size: 18px;
+    color: $white;
+    font-weight: bold;
+  }
+
+  .genres {
+    margin-top: 5px;
+    font-size: 15px;
+    color: rgb(194, 194, 194);
+  }
+}
+
+.wrapper {
+  background-color: #00000098;
+  width: 100%;
+  height: 100%;
+}
+
+.movie-details {
+  color: $white;
+
+  &-title {
+    margin: 0;
+    font-size: 46px;
+    color: $white;
+  }
+
+  .wrapper {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.922) 0%, rgba(0, 0, 0, 0.575) 100%);
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  &-poster {
+    width: 100%;
+    margin-top: -50px;
+    border-image: linear-gradient(to right, red, yellow);
+    border-image-slice: 1;
+    border-radius: 20px;
+  }
+
+  &-top-stats {
+    margin: 20px 0;
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    display: inline-block;
+
+    &:after {
+      content: '';
+      height: 1px;
+      background-color: rgba(204, 204, 204, 0.712);
+      display: block;
+      width: 100%;
+    }
+
+    .average-rating {
+      font-size: 22px;
+      font-weight: 700;
+      height: 35px;
+      width: 35px;
+      line-height: 35px;
+      text-align: center;
+      border-radius: 50%;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      color: $white;
+      padding: 12px;
+      border: 1px solid #ccc;
+      background: rgb(255, 132, 1);
+      background: linear-gradient(9deg, rgba(255, 132, 1, 1) 0%, rgba(255, 166, 0, 1) 100%);
+      box-shadow: $box-shadow;
+    }
+
+    .tag {
+      padding: 0 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      text-align: center;
+      color: $white;
+      background: $light-blue;
+      box-shadow: $box-shadow;
+    }
+  }
+
+  &-bottom-stats {
+    padding-top: 20px;
+  }
+
+  #movie-backdrop-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
+
+footer {
+  padding: 40px 0;
+  font-family: $font-family !important;
+  color: $white;
+  position: relative;
+  background: url('../images/bg-wave-bottom.svg');
+  background-color: $dark-blue;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.middle > * {
+  vertical-align: middle;
+}
+
+.login {
+  min-height: 100vh;
+
+  .illustration {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    padding: 4% 0;
+    background-repeat: no-repeat;
+    background-size: 200%;
+  }
+
+  &-form {
+    background: rgb(30, 30, 48);
+    background: linear-gradient(180deg, rgba(30, 30, 48, 1) 70%, rgb(46, 73, 129) 150%);
+    color: $white;
+    padding: 60px 80px !important;
+
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border: 1px solid $white;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;
+      /* Firefox, other Gecko */
+      box-sizing: border-box;
+    }
+
+    h2 {
+      font-size: 46px;
+      font-weight: 600;
+      margin-bottom: 40px;
+
+      &:after {
+        content: '';
+        display: block;
+        margin-top: 15px;
+        width: 10%;
+        height: 6px;
+        background-color: $super-light-blue;
+      }
+    }
+
+    label {
+      width: 100%;
+      font-size: 24px;
+      margin: 0;
+
+      .eye-icon-pw {
+        float: right !important;
+      }
+    }
+
+    input {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background: rgb(0, 0, 0);
+      background: linear-gradient(9deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 100%);
+      color: $super-light-blue;
+      width: 100%;
+      border: 3px solid $black;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      transition: .3s ease;
+      text-transform: uppercase;
+      margin: 20px 0 40px 0;
+
+      &:hover {
+        cursor: pointer;
+        border: 3px solid $super-light-blue;
+        background-color: lighten;
+      }
+    }
+
+    .link {
+      color: $super-light-blue;
+      text-decoration: none;
+    }
+  }
+}
+
+.btn-add {
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  @include hoverEffect(green, true, true);
+  color: $white;
+}
+
+.table-my-list {
+  border-collapse: collapse;
+  width: 100%;
+  color: $white;
+
+  td,
+  th {
+    border-bottom: 1px solid #293042;
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #2e3447;
+    color: $very-light-blue;
+  }
+
+  tr:nth-child(even) {
+    background-color: #2e3447;
+  }
+
+  tr {
+    background-color: #353d4f;
+  }
+}
+
+.table-legend-about {
+  width: 40%;
+}
+
+.carousel {
+
+  &-title {
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+  &-description {
+    font-size: 20px;
+    line-height: 1.7em;
+  }
+}
+
+.MuiBox-root {
+  padding: 0 !important;
+}
+
+.landing-page {
+  height: 100vh;
+  max-height: 100vh;
+  background: url('https://content.web-repository.com/s/48556210809167881/uploads/Backgrounds/gradient_warm_gif_background-0967584.gif');
+  background-size: cover;
+  color: $white;
+
+  .wrapper {
+    background: rgba(159, 45, 131, 0.418);
+    background: linear-gradient(100deg, rgba(159, 45, 130, .5) 0%, rgba(41, 34, 102, .75) 100%);
+
+    @include mobile {
+      padding: 0 0 40px 0;
+    }
+
+    .container {
+      padding-top: 10%;
+      // -ms-transform: translateY(50%);
+      // transform: translateY(50%);
+    }
+
+    h1 {
+      font-size: 50px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 1.7em;
+    }
+
+    .img-col {
+      @include mobile {
+        display: none;
+      }
+
+      img {
+        margin-top: -150px;
+        margin-left: -100px;
+        margin-right: -30px;
+        -webkit-filter: drop-shadow(5px 5px 15px #d486ba9a);
+        filter: drop-shadow(5px 5px 15px #d486ba9a);
+      }
+    }
+
+    .cta {
+      background-color: #d486ba;
+      border-radius: 5px;
+      text-transform: uppercase;
+      color: $white;
+      font-weight: 700;
+      padding: 12px 50px;
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 18px;
+      letter-spacing: 1px;
+      transition: .3s ease;
+      margin-right: 20px;
+      text-decoration: none;
+
+      &:hover {
+        border-radius: 40px;
+        background-color: darken(#d486ba, 10%);
+      }
+    }
+
+    .cta-outline {
+      background-color: transparent;
+      border: 2px solid #d486ba;
+
+      &:hover {
+        background-color: #d486ba;
+      }
+    }
+  }
+}
+
+.delete-trash-icon {
+  color: rgb(245, 84, 72);
+  @include hoverEffect(rgb(245, 84, 72), true, false)
+}

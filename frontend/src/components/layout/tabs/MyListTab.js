@@ -3,6 +3,7 @@ import {IMG_BASE_URL, watchStatus, COLORS_BORDER_LEFT_STATUS, deleteMovieContent
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import ModalAction from '../ModalAction'
+import MyMoviesService from '../../../services/MyMoviesService'
 
 export default function MyListTab(props) {
     const [myMovies, setMyMovies] = useState([])
@@ -10,7 +11,15 @@ export default function MyListTab(props) {
     const [modalShow, setModalShow] = useState(false);
     const [delMovie, setDelMovie] = useState(null);
 
-    let ids = [];
+   
+    // useEffect(() => {
+    //     let movies = MyMoviesService.getMyMovies(props.movies);
+
+    //     // Loop through all added movies and set movies to state
+    //     setMyMovies(movies)
+    // }, [myMovies])
+
+    let ids = []
     let movies = []
 
     useEffect(() => {
@@ -53,8 +62,6 @@ export default function MyListTab(props) {
         setModalShow(true)
     }
 
-    console.log(myMovies)
-
     return (
         <div className="container">
             <h1 className="heading-page">My List</h1>
@@ -83,8 +90,6 @@ export default function MyListTab(props) {
                             </tr>
                         </thead>
                         {myMovies.map((movie, index) => {
-                            console.log(movie)
-                            console.log(key)
                             // If movie status is equal to current key that is set by tab, then display. Also display everything for key 'All movies'
                             if (movie.userStats.status === key || key === "All") {
                                 return (

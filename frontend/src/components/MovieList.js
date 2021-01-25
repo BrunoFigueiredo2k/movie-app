@@ -1,22 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import Movie from './Movie';
 import {Row} from 'react-grid-system';
-import axios from 'axios'
-
-const genresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_MOVIEDB}&language=en-US`
+import MovieService from '../services/MovieService';
 
 function MovieList(props) {
     const [genres, setGenres] = useState([]);
 
     // Get genres
     useEffect(() => {
-        axios.get(genresUrl)
-            .then(res => {
-                setGenres(res.data.genres)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        MovieService.getGenres().then(res => {
+            setGenres(res.data.genres)
+        })
+        .catch(err => {
+            console.log(err)
+        })  
     }, []);
 
     return (

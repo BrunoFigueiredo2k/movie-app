@@ -7,9 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PopularTab from './tabs/PopularTab'
 import MyListTab from './tabs/MyListTab'
+import TopMoviesTab from './tabs/TopMoviesTab'
 import app from '../../firebase'
-import axios from 'axios'
 import {useHistory} from "react-router-dom";
+import MovieService from '../../services/MovieService';
 
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
@@ -44,8 +45,6 @@ function a11yProps(index) {
     };
 }
 
-const API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY_MOVIEDB}&language=en-US&page=1`;
-
 export default function SimpleTabs() {
     const [value, setValue] = React.useState(0);
     const [movies, setMovies] = useState([]);
@@ -56,14 +55,12 @@ export default function SimpleTabs() {
     };
 
     useEffect(() => {
-        axios.get(API_URL)
-            .then(res => {
-                console.log(res.data.results)
-                setMovies(res.data.results)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        MovieService.getPopularMovies().then(res => {
+            setMovies(res.data.results)
+        })
+        .catch(err => {
+            console.log(err)
+        })  
     }, []);
 
     const signOut = () => {
@@ -77,6 +74,7 @@ export default function SimpleTabs() {
                 <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" className="container">
                     <Tab label="Popular" {...a11yProps(0)} />
                     <Tab label="My List" {...a11yProps(1)} />
+                    <Tab label="Top Movies" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <TabPanel value={value} index={0}>
@@ -84,6 +82,9 @@ export default function SimpleTabs() {
             </TabPanel>
             <TabPanel value={value} index={1}>
                 <MyListTab movies={movies}/>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+                <TopMoviesTab movies={movies}/>
             </TabPanel>
             <button onClick={signOut} style={{float: 'right'}}>Sign out</button>
         </>

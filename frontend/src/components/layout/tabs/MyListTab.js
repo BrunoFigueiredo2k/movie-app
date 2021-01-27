@@ -3,7 +3,7 @@ import {IMG_BASE_URL, watchStatus, COLORS_BORDER_LEFT_STATUS, deleteMovieContent
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import ModalAction from '../ModalAction'
-import MyMoviesService from '../../../services/MyMoviesService'
+import MyMovies from '../../../utils/MyMovies'
 
 export default function MyListTab(props) {
     const [myMovies, setMyMovies] = useState([])
@@ -11,31 +11,8 @@ export default function MyListTab(props) {
     const [modalShow, setModalShow] = useState(false);
     const [delMovie, setDelMovie] = useState(null);
 
-   
-    // useEffect(() => {
-    //     let movies = MyMoviesService.getMyMovies(props.movies);
-
-    //     // Loop through all added movies and set movies to state
-    //     setMyMovies(movies)
-    // }, [myMovies])
-
-    let ids = []
-    let movies = []
-
     useEffect(() => {
-        // Loop through all movies and add ids to list
-        props.movies.map(movie => {
-            ids.push(movie.id)
-        })
-
-        // Loop through all ids and getItems from localstorage based on id, if this doesn't return null then add movie to list
-        ids.map(id => {
-            let storedMovie = JSON.parse(localStorage.getItem(id.toString()))
-            if (storedMovie != null) movies.push(storedMovie[0])
-        })
-
-        // Loop through all added movies and set movies to state
-        setMyMovies(movies)
+        setMyMovies(MyMovies.getMoviesLocalStorage(props.movies));
     }, [myMovies])
 
     const determineColorStatus = (statusWatching) => {

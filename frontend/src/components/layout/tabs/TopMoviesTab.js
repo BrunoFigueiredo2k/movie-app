@@ -70,17 +70,13 @@ export default function TopMoviesTab(props) {
                                                 {myMovies.map(myMovie => {
                                                     if (myMovie.movie.movieItem.id === movie.id) {
                                                         return (myMovie.userStats.rating.charAt(1))
-                                                    } else {
-                                                        return '-'
-                                                    };
+                                                    }
                                                 })}
                                             </td>
                                             <td className="text-center">
                                                 {myMovies.map(myMovie => {
                                                     if (myMovie.movie.movieItem.id === movie.id) {
                                                         return (myMovie.userStats.status);
-                                                    } else {
-                                                        return '-'
                                                     }
                                                 })}
                                             </td>

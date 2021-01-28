@@ -100,8 +100,19 @@ export default function TopMoviesTab(props) {
         return a > b ? 1 : a < b ? -1 : 0;
     }
 
+    // Checks if state message confirmation is being displayed and sets display to false after 3 seconds
+    const checkIfDisplayMesssageChanged = () => {
+        if (displayMessage){
+            const timer = setTimeout(() => {
+                setDisplayMessage(false);
+            }, 3000);
+            return () => clearTimeout(timer);
+        }
+    }
+
     return (
         <div>
+            {checkIfDisplayMesssageChanged()}
             <div className="container">
                 {displayMessage ? <ConfirmationMessage type={'success'} message={`Successfully filtered`} /> : null}
                 <h1 className="heading-page">Top Movies</h1>

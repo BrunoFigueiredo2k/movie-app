@@ -553,26 +553,48 @@ footer {
 }
 
 .alert-box {
-  padding: 15px;
+  padding: 15px 30px;
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
 
 .success {
+  position: fixed;
+  top: 0;
   color: #3c763d;
   background-color: #dff0d8;
   border-color: #d6e9c6;
 }
 
 .failure {
+  position: fixed;
+  top: 0;
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd1;
 }
 
 .warning {
+  position: fixed;
+  top: 0;
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;
+}
+
+.horizontal-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vertical-center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.both-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

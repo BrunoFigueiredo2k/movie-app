@@ -3,10 +3,14 @@ import {IMG_BASE_URL} from '../../strings'
 import MyMovies from '../../../utils/MyMovies'
 
 export default function TopMoviesTab(props) {
-    const [myMovies, setMyMovies] = useState([])
+    const [myMovies, setMyMovies] = useState([]);
+    // const [movieRatings, setMovieRatings] = useState([]);
+    // const [movieVotes, setMovieVotes] = useState([]);
+    // const [movieDates, setMovieDates] = useState([]);
+    const movies = props.movies;
 
     useEffect(() => {
-        setMyMovies(MyMovies.getMoviesLocalStorage(props.movies));
+        setMyMovies(MyMovies.getMoviesLocalStorage(movies));
     }, [myMovies])
 
     const determineColorRank = (index) => {
@@ -17,6 +21,7 @@ export default function TopMoviesTab(props) {
             borderRadius: '10px',
             padding: '20px 30px'
         }
+
         switch (index){
             case 1: // gold
                 style.backgroundColor = '#CFB53B';
@@ -32,12 +37,86 @@ export default function TopMoviesTab(props) {
         }
     }
 
+    const onChangeDropdownValue = (e) => {
+        let val = e.target.value
+        switch (val){
+            case 'h-score':
+                applyFilter('t-score');
+                break;
+            case 'l-score':
+                applyFilter('b-score');
+                break;
+            case 'h-votes':
+                applyFilter('t-votes')
+                break;
+            case 'l-votes':
+                applyFilter('b-votes');
+                break;
+            case 'newest':
+                applyFilter('t-date');
+                break;
+            case 'oldest':
+                applyFilter('b-date');
+                break;
+        }
+    }
+
+    const applyFilter = (type) => {
+        movies.sort((a,b) => {
+            if (type.includes('score')){
+                if (type.includes('t')){
+                    // filter by descending order
+                    return b.vote_average - a.vote_average;
+                } else {
+                    // filter by ascending order 
+                    return a.vote_average - b.vote_average;
+                }
+            } else if (type.includes('votes')){
+                if (type.includes('t')){
+                    // filter by descending order
+                    return b.vote_count - a.vote_count;
+                } else {
+                    // filter by ascending order 
+                    return a.vote_count - b.vote_count;
+                }
+            } else if (type.includes('date')){
+                // TODO: fix this
+                if (type.includes('t')){
+                     // filter by descending order
+                    sortDateFormat(a, b);
+                } else {
+                    // filter by ascending order 
+                    sortDateFormat(a, b);
+                }
+            }
+        })
+
+    }
+
+    // TODO: fix this
+    const sortDateFormat = (a, b) => {
+        a = a.split('-').reverse().join('');    
+        b = b.split('-').reverse().join('');
+        return a > b ? 1 : a < b ? -1 : 0;
+    }
+    
     return (
         <div>
             <div className="container">
                 <h1 className="heading-page">Top Movies</h1>
 
-                <table className="table-my-list">
+                <label for="filter" style={{color: 'white'}}>Filter by:</label><br/>
+                <select name="filter" id="filter" className="select" onChange={onChangeDropdownValue}>
+                    <option disabled>Select option</option>
+                    <option value="h-score">Highest score</option>
+                    <option value="l-score">Lowest score</option>
+                    <option value="m-votes">Most votes</option>
+                    <option value="l-votes">Least votes</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+
+                <table className="table-my-list mt-4 pb-4">
                         <thead>
                             <tr>
                                 <th className="text-center" style={{width: '10%'}}>Rank</th>
@@ -50,7 +129,7 @@ export default function TopMoviesTab(props) {
                         </thead>
                         <tbody>
                             {
-                                props.movies.map((movie, index) => {
+                                movies.map((movie, index) => {
                                     return (
                                         <tr key={movie.id}>
                                             <td className="text-center"><span style={determineColorRank(index + 1)}>{index + 1}</span></td>

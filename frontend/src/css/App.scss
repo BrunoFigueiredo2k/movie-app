@@ -28,13 +28,19 @@ $box-shadow: 0 8px 11px 0 rgba(0, 0, 0, 0.1);
     @if ($background) {
       @if ($lighten) {
         background-color: lighten($color, 10%);
-      } @else {
+      }
+
+      @else {
         background-color: darken($color, 10%);
       }
-    } @else {
+    }
+
+    @else {
       @if ($lighten) {
         color: lighten($color, 10%);
-      } @else {
+      }
+
+      @else {
         color: darken($color, 10%);
       }
     }
@@ -310,7 +316,7 @@ footer {
   }
 }
 
-.middle > * {
+.middle>* {
   vertical-align: middle;
 }
 
@@ -538,4 +544,10 @@ footer {
 .delete-trash-icon {
   color: rgb(245, 84, 72);
   @include hoverEffect(rgb(245, 84, 72), true, false)
+}
+
+.select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 200px;
 }

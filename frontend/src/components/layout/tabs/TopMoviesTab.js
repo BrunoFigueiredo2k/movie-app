@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import {IMG_BASE_URL} from '../../strings'
 import MyMovies from '../../../utils/MyMovies'
+import ConfirmationMessage from '../ConfirmationMessage';
 
 export default function TopMoviesTab(props) {
     const [myMovies, setMyMovies] = useState([]);
-    // const [movieRatings, setMovieRatings] = useState([]);
-    // const [movieVotes, setMovieVotes] = useState([]);
-    // const [movieDates, setMovieDates] = useState([]);
+    const [displayMessage, setDisplayMessage] = useState(false);
     const movies = props.movies;
 
+    //TODO: fix -> fadeout displayMessage after three seconds
     useEffect(() => {
         setMyMovies(MyMovies.getMoviesLocalStorage(movies));
     }, [myMovies])
@@ -90,7 +90,7 @@ export default function TopMoviesTab(props) {
                 }
             }
         })
-
+        setDisplayMessage(true);
     }
 
     // TODO: fix this
@@ -99,10 +99,11 @@ export default function TopMoviesTab(props) {
         b = b.split('-').reverse().join('');
         return a > b ? 1 : a < b ? -1 : 0;
     }
-    
+
     return (
         <div>
             <div className="container">
+                {displayMessage ? <ConfirmationMessage type={'success'} message={`Successfully filtered`} /> : null}
                 <h1 className="heading-page">Top Movies</h1>
 
                 <label for="filter" style={{color: 'white'}}>Filter by:</label><br/>

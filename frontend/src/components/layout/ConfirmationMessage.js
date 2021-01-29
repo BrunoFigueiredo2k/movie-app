@@ -6,8 +6,6 @@ export default function ConfirmationMessage(props) {
     const returnTypeMessage = () => {
         switch (type){
             case 'success':
-                console.log(type)
-                console.log(props.message)
                 return <div class="alert-box success mt-3 horizontal-center">{props.message}</div>;
             case 'failure':
                 return (<div class="alert-box failure mt-3 horizontal-center">{props.message}</div>);

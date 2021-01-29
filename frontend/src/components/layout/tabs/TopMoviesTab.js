@@ -72,32 +72,25 @@ export default function TopMoviesTab(props) {
                     return a.vote_average - b.vote_average;
                 }
             } else if (type.includes('votes')){
-                if (type.includes('t')){
+                if (type.includes('b')){
                     // filter by descending order
-                    return b.vote_count - a.vote_count;
+                    return a.vote_count - b.vote_count;
                 } else {
                     // filter by ascending order 
-                    return a.vote_count - b.vote_count;
+                    return b.vote_count - a.vote_count;
                 }
             } else if (type.includes('date')){
                 // TODO: fix this
-                if (type.includes('t')){
+                if (type.includes('b')){
                      // filter by descending order
-                    sortDateFormat(a, b);
+                     return new Date(a.release_date) - new Date(b.release_date);
                 } else {
                     // filter by ascending order 
-                    sortDateFormat(a, b);
+                    return new Date(b.release_date) - new Date(a.release_date);
                 }
             }
         })
         setDisplayMessage(true);
-    }
-
-    // TODO: fix this
-    const sortDateFormat = (a, b) => {
-        a = a.split('-').reverse().join('');    
-        b = b.split('-').reverse().join('');
-        return a > b ? 1 : a < b ? -1 : 0;
     }
 
     // Checks if state message confirmation is being displayed and sets display to false after 3 seconds
@@ -105,14 +98,17 @@ export default function TopMoviesTab(props) {
         if (displayMessage){
             const timer = setTimeout(() => {
                 setDisplayMessage(false);
-            }, 3000);
+            }, 2000);
             return () => clearTimeout(timer);
         }
     }
 
+    console.log(displayMessage)
+
+    // checkIfDisplayMesssageChanged();
+
     return (
         <div>
-            {checkIfDisplayMesssageChanged()}
             <div className="container">
                 {displayMessage ? <ConfirmationMessage type={'success'} message={`Successfully filtered`} /> : null}
                 <h1 className="heading-page">Top Movies</h1>

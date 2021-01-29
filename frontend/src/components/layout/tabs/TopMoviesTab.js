@@ -11,7 +11,7 @@ export default function TopMoviesTab(props) {
     const movies = props.movies;
 
     useEffect(() => {
-        if (myMovies.length != 0) { setMyMovies(MyMovies.getMoviesLocalStorage(movies)); }
+        if (myMovies.length == 0) setMyMovies(MyMovies.getMoviesLocalStorage(movies));
     }, [myMovies])
 
     const determineColorRank = (index) => {

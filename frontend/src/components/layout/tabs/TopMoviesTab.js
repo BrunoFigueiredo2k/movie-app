@@ -2,13 +2,17 @@ import React, {useEffect, useState} from 'react'
 import {IMG_BASE_URL} from '../../strings'
 import MyMovies from '../../../utils/MyMovies'
 import ConfirmationMessage from '../ConfirmationMessage';
+import Form from 'react-bootstrap/Form'
 
 export default function TopMoviesTab(props) {
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
     const [myMovies, setMyMovies] = useState([]);
     const [displayMessage, setDisplayMessage] = useState(false);
     const [typeDisplayMessage, setTypeDisplayMessage] = useState('');
     const [contentDisplayMessage, setContentDisplayMessage] = useState('');
-    const movies = props.movies;
+    const [checkedBox, setCheckedBox] = useState(false);
+    let movies = props.movies;
 
     useEffect(() => {
         if (myMovies.length == 0) setMyMovies(MyMovies.getMoviesLocalStorage(movies));
@@ -112,6 +116,22 @@ export default function TopMoviesTab(props) {
             return () => clearTimeout(timer);
         }
     }
+
+    // TODO: fix state update to refresh table with only myMovies
+    const handleCheckBoxClick = () => {
+        if (!checkedBox) {
+            setCheckedBox(true);
+            movies = [];
+            myMovies.map(myMovie => {
+                movies.push(myMovie.movie.movieItem)
+            })
+        } else  {
+            setCheckedBox(false);
+            movies = props.movies;
+        }
+        console.log(movies)
+        forceUpdate();
+    }
     
     checkIfDisplayMesssageChanged();
 
@@ -121,16 +141,20 @@ export default function TopMoviesTab(props) {
                 {displayMessage ? <ConfirmationMessage type={typeDisplayMessage} message={contentDisplayMessage} /> : null}
                 <h1 className="heading-page">Top Movies</h1>
 
-                <label for="filter" style={{color: 'white'}}>Filter by:</label><br/>
-                <select name="filter" id="filter" className="select" onChange={onChangeDropdownValue}>
-                    <option disabled>Select option</option>
-                    <option value="h-score">Highest score</option>
-                    <option value="l-score">Lowest score</option>
-                    <option value="m-votes">Most votes</option>
-                    <option value="l-votes">Least votes</option>
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                </select>
+                <div>
+                    <label for="filter" style={{color: 'white'}}>Filter by:</label><br/>
+                    <select name="filter" id="filter" className="select" onChange={onChangeDropdownValue}>
+                        <option disabled>Select option</option>
+                        <option value="h-score">Highest score</option>
+                        <option value="l-score">Lowest score</option>
+                        <option value="m-votes">Most votes</option>
+                        <option value="l-votes">Least votes</option>
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                    <Form.Check inline label="only display movies in list" className="ml-3" style={{color: 'white'}} type="checkbox"
+                    defaultChecked={checkedBox} onClick={handleCheckBoxClick} />
+                </div>
 
                 <table className="table-my-list mt-4 pb-4">
                         <thead>

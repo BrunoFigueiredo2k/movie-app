@@ -6,11 +6,12 @@ import ConfirmationMessage from '../ConfirmationMessage';
 export default function TopMoviesTab(props) {
     const [myMovies, setMyMovies] = useState([]);
     const [displayMessage, setDisplayMessage] = useState(false);
+    const [typeDisplayMessage, setTypeDisplayMessage] = useState('');
+    const [contentDisplayMessage, setContentDisplayMessage] = useState('');
     const movies = props.movies;
 
-    //TODO: fix -> fadeout displayMessage after three seconds
     useEffect(() => {
-        setMyMovies(MyMovies.getMoviesLocalStorage(movies));
+        if (myMovies.length != 0) { setMyMovies(MyMovies.getMoviesLocalStorage(movies)); }
     }, [myMovies])
 
     const determineColorRank = (index) => {
@@ -62,34 +63,43 @@ export default function TopMoviesTab(props) {
     }
 
     const applyFilter = (type) => {
-        movies.sort((a,b) => {
-            if (type.includes('score')){
-                if (type.includes('t')){
-                    // filter by descending order
-                    return b.vote_average - a.vote_average;
-                } else {
-                    // filter by ascending order 
-                    return a.vote_average - b.vote_average;
+        try {
+            movies.sort((a,b) => {
+                if (type.includes('score')){
+                    if (type.includes('t')){
+                        // filter by descending order
+                        return b.vote_average - a.vote_average;
+                    } else {
+                        // filter by ascending order 
+                        return a.vote_average - b.vote_average;
+                    }
+                } else if (type.includes('votes')){
+                    if (type.includes('b')){
+                        // filter by descending order
+                        return a.vote_count - b.vote_count;
+                    } else {
+                        // filter by ascending order 
+                        return b.vote_count - a.vote_count;
+                    }
+                } else if (type.includes('date')){
+                    if (type.includes('b')){
+                         // filter by descending order
+                         return new Date(a.release_date) - new Date(b.release_date);
+                    } else {
+                        // filter by ascending order 
+                        return new Date(b.release_date) - new Date(a.release_date);
+                    }
                 }
-            } else if (type.includes('votes')){
-                if (type.includes('b')){
-                    // filter by descending order
-                    return a.vote_count - b.vote_count;
-                } else {
-                    // filter by ascending order 
-                    return b.vote_count - a.vote_count;
-                }
-            } else if (type.includes('date')){
-                // TODO: fix this
-                if (type.includes('b')){
-                     // filter by descending order
-                     return new Date(a.release_date) - new Date(b.release_date);
-                } else {
-                    // filter by ascending order 
-                    return new Date(b.release_date) - new Date(a.release_date);
-                }
-            }
-        })
+            })
+            showMessage('success', 'Successfully filtered!');
+        } catch (e){
+            showMessage('failure', e);
+        }
+    }
+
+    const showMessage = (type, content) => {
+        setTypeDisplayMessage(type);
+        setContentDisplayMessage(content);
         setDisplayMessage(true);
     }
 
@@ -102,15 +112,13 @@ export default function TopMoviesTab(props) {
             return () => clearTimeout(timer);
         }
     }
-
-    console.log(displayMessage)
-
-    // checkIfDisplayMesssageChanged();
+    
+    checkIfDisplayMesssageChanged();
 
     return (
         <div>
             <div className="container">
-                {displayMessage ? <ConfirmationMessage type={'success'} message={`Successfully filtered`} /> : null}
+                {displayMessage ? <ConfirmationMessage type={typeDisplayMessage} message={contentDisplayMessage} /> : null}
                 <h1 className="heading-page">Top Movies</h1>
 
                 <label for="filter" style={{color: 'white'}}>Filter by:</label><br/>

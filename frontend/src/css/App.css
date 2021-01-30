@@ -235,6 +235,12 @@ body {
   padding-top: 20px;
 }
 
+@media (max-width: 767px) {
+  .movie-details-bottom-stats {
+    margin-top: 30px;
+  }
+}
+
 .movie-details #movie-backdrop-img {
   background-size: cover;
   background-repeat: no-repeat;

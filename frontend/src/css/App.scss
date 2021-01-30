@@ -280,6 +280,10 @@ body {
 
   &-bottom-stats {
     padding-top: 20px;
+
+    @include mobile {
+      margin-top: 30px;
+    }
   }
 
   #movie-backdrop-img {

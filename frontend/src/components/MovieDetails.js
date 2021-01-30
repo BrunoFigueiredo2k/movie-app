@@ -27,14 +27,9 @@ const MovieDetails = () => {
 
     const showSimilarMovies = () => {
         if (similarMovies.length !== 0){
-            console.log('return ')
             return ( <RecommendedCards similarMovies={similarMovies} /> );
         }
     }
-
-    console.log(similarMovies);
-    console.log(similarMovies.length);
-    console.log(location.state.id);
 
     return (
         <div className="movie-details section">
@@ -65,9 +60,7 @@ const MovieDetails = () => {
                                 </span>
                             </li>
                             <li>
-                                <p className="tag">Popularity:
-                                    <b>{Math.round(location.state.popularity)}</b>
-                                </p>
+                                <p className="tag">Popularity: <b>{Math.round(location.state.popularity)}</b></p>
                             </li>
                             <li>
                                 <Button variant="success" onClick={() => setModalShow(true)}>Add to list</Button>

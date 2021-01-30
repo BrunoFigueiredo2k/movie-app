@@ -1,11 +1,16 @@
-import React from 'react'
+import React, {useState} from 'react'
 import MovieList from '../../MovieList'
 import Carousel from 'react-bootstrap/Carousel'
 import {IMG_BASE_URL} from '../../strings'
 import SearchBar from '../../SearchBar'
 
 export default function PopularTab(props) {
-    console.log(props)
+    const [searchVal, setSearchVal] = useState('');
+    const [searchedMovies, setSearchedMovies] = useState([]);
+
+    console.log(searchedMovies);
+    console.log(searchVal);
+    console.log(props.movies);  
 
     // Push amount of items passed in params to list.
     const carouselItems = (amountItems) => {
@@ -29,6 +34,24 @@ export default function PopularTab(props) {
         return carouselItems
     }
 
+    // TODO: fix the search, for some reason searchVal is reset whenever setSearchedMovies is called
+    const resetSearchedMovies = () => {
+        if (searchedMovies.length > 0 && searchVal != '') {
+            setSearchedMovies([]);
+            setSearchVal(''); // reset input search field
+        }
+    }
+
+    const renderMovieList = () => {
+        if (searchedMovies.length > 0) {
+            return (<MovieList movies={searchedMovies} />);
+        } else if (props.movies.length > 0) {
+            return (<MovieList movies={props.movies} />);
+        } else {
+            return (<p>No movies</p>);
+        }
+    }
+
     return (
         <>
             {props.movies.length ?
@@ -36,11 +59,11 @@ export default function PopularTab(props) {
                     {carouselItems(5)}
                 </Carousel> : null}
             <div className="container">
-                <h1 className="heading-page" style={{paddingTop: '30px'}}>Popular movies</h1>
-                <SearchBar/>
-                {props.movies ?
-                    <MovieList movies={props.movies}></MovieList>
-                    : <p>No movies</p>}
+                <h1 className="heading-page" style={{paddingTop: '30px'}}>Popular movies 
+                    <button onClick={resetSearchedMovies()} className="btn btn-primary ml-3">Reset</button>
+                </h1>
+                <SearchBar setSearchedMovies={setSearchedMovies} setSearchVal={setSearchVal}/>
+                {renderMovieList()}
             </div>
         </>
     )

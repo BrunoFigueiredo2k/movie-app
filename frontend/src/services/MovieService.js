@@ -16,6 +16,13 @@ class MovieService {
     getSimilarMovies(movieId){
         return axios.get(BASE_URL + `movie/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`);
     }
+
+    searchMoviesByTitle(movieTitle){
+        return axios.get(
+            BASE_URL + `search/movie?language=en-US&page=1&include_adult=false`, // url
+            { params: { api_key: API_KEY, query: movieTitle } } // options query params
+        );
+    }
     
 }
 

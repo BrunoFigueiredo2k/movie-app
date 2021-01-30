@@ -527,31 +527,28 @@ footer h2 {
   margin-bottom: 20px;
   border: 1px solid transparent;
   border-radius: 4px;
+  font-weight: 600;
   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.13);
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.13);
   font-size: 14px;
+  z-index: 99999;
+  position: fixed;
+  top: 0;
 }
 
 .success {
-  position: fixed;
-  top: 0;
   color: #3c763d;
-  font-weight: 600;
   background-color: #d0f0c4;
   border-color: #d6e9c6;
 }
 
 .failure {
-  position: fixed;
-  top: 0;
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd1;
 }
 
 .warning {
-  position: fixed;
-  top: 0;
   color: #8a6d3b;
   background-color: #fcf8e3;
   border-color: #faebcc;

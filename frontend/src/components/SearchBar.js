@@ -11,15 +11,23 @@ const SearchBar = (props) => {
         let currentVal = searchVal.current.value;
         props.setSearchVal(currentVal);
 
-        // api call
-        MovieService.searchMoviesByTitle(currentVal)
-            .then(res => {
-                props.setSearchedMovies(res.data.results);
+        if (currentVal !== ''){
+            // api call
+            MovieService.searchMoviesByTitle(currentVal)
+                .then(res => {
+                    props.setSearchedMovies(res.data.results);
+                })
+                .catch(err => {
+                    alert(err);
+                    console.log(err);
+                })
+        } else {
+            props.setDisplayMessage({
+                display: true,
+                type: 'failure',
+                content: 'There is no input. Make sure you type something first!'
             })
-            .catch(err => {
-                alert(err);
-                console.log(err);
-            })
+        }
     };
 
     const handleKeyDownEnter = (e) => {

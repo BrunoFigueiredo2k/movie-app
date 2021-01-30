@@ -3,14 +3,17 @@ import {IMG_BASE_URL} from '../../strings'
 import MyMovies from '../../../utils/MyMovies'
 import ConfirmationMessage from '../ConfirmationMessage';
 import Form from 'react-bootstrap/Form'
+import {checkIfDisplayMesssageChanged} from '../../utils';
 
 export default function TopMoviesTab(props) {
     const [, updateState] = React.useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
     const [myMovies, setMyMovies] = useState([]);
-    const [displayMessage, setDisplayMessage] = useState(false);
-    const [typeDisplayMessage, setTypeDisplayMessage] = useState('');
-    const [contentDisplayMessage, setContentDisplayMessage] = useState('');
+    const [displayMessage, setDisplayMessage] = useState({
+        display: false,
+        type: '',
+        content: ''
+    });
     const [checkedBox, setCheckedBox] = useState(false);
     let movies = props.movies;
 
@@ -102,19 +105,11 @@ export default function TopMoviesTab(props) {
     }
 
     const showMessage = (type, content) => {
-        setTypeDisplayMessage(type);
-        setContentDisplayMessage(content);
-        setDisplayMessage(true);
-    }
-
-    // Checks if state message confirmation is being displayed and sets display to false after 3 seconds
-    const checkIfDisplayMesssageChanged = () => {
-        if (displayMessage){
-            const timer = setTimeout(() => {
-                setDisplayMessage(false);
-            }, 2000);
-            return () => clearTimeout(timer);
-        }
+        setDisplayMessage({
+            display: true,
+            type: type,
+            content: content
+        });
     }
 
     // TODO: fix state update to refresh table with only myMovies
@@ -133,12 +128,12 @@ export default function TopMoviesTab(props) {
         forceUpdate();
     }
     
-    checkIfDisplayMesssageChanged();
+    checkIfDisplayMesssageChanged(displayMessage, setDisplayMessage, 2000);
 
     return (
         <div>
             <div className="container">
-                {displayMessage ? <ConfirmationMessage type={typeDisplayMessage} message={contentDisplayMessage} /> : null}
+                {displayMessage.display ? <ConfirmationMessage type={displayMessage.type} message={displayMessage.content} /> : null}
                 <h1 className="heading-page">Top Movies</h1>
 
                 <div>

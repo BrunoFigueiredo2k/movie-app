@@ -8,3 +8,12 @@ export const getCurrentDate = () => {
 
     return currentDate
 }
+
+export const checkIfDisplayMesssageChanged = (displayMessage, setDisplayMessage, duration) => {
+    if (displayMessage.display){
+        const timer = setTimeout(() => {
+            setDisplayMessage(false);
+        }, duration);
+        return () => clearTimeout(timer);
+    }
+}

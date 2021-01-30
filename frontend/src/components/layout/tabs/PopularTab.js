@@ -3,10 +3,17 @@ import MovieList from '../../MovieList'
 import Carousel from 'react-bootstrap/Carousel'
 import {IMG_BASE_URL} from '../../strings'
 import SearchBar from '../../SearchBar'
+import ConfirmationMessage from '../ConfirmationMessage';
+import {checkIfDisplayMesssageChanged} from '../../utils';
 
 export default function PopularTab(props) {
     const [searchVal, setSearchVal] = useState('');
     const [searchedMovies, setSearchedMovies] = useState([]);
+    const [displayMessage, setDisplayMessage] = useState({
+        display: false,
+        type: '',
+        content: ''
+    });
 
     console.log(searchedMovies);
     console.log(searchVal);
@@ -52,8 +59,12 @@ export default function PopularTab(props) {
         }
     }
 
+    checkIfDisplayMesssageChanged(displayMessage, setDisplayMessage, 3000);
+
     return (
         <>
+            {displayMessage.display ? <ConfirmationMessage type={displayMessage.type} message={displayMessage.content} /> : null}
+
             {props.movies.length ?
                 <Carousel style={{maxHeight: '400px'}}>
                     {carouselItems(5)}
@@ -62,7 +73,7 @@ export default function PopularTab(props) {
                 <h1 className="heading-page" style={{paddingTop: '30px'}}>Popular movies 
                     <button onClick={resetSearchedMovies()} className="btn btn-primary ml-3">Reset</button>
                 </h1>
-                <SearchBar setSearchedMovies={setSearchedMovies} setSearchVal={setSearchVal}/>
+                <SearchBar setSearchedMovies={setSearchedMovies} setSearchVal={setSearchVal} setDisplayMessage={setDisplayMessage}/>
                 {renderMovieList()}
             </div>
         </>

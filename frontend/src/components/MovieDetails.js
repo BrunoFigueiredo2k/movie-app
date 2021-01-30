@@ -5,6 +5,7 @@ import Header from './layout/Header'
 import VerticallyCenteredModal from './layout/VerticallyCenteredModal'
 import Button from 'react-bootstrap/Button'
 import {IMG_BASE_URL} from './strings'
+import RecommendedCards from './layout/RecommendedCards';
 
 const MovieDetails = () => {
     const location = useLocation()
@@ -62,6 +63,7 @@ const MovieDetails = () => {
                         </div>
                     </Col>
                 </Row>
+                <RecommendedCards movie={location.state} />
             </div>
 
             <VerticallyCenteredModal show={modalShow} movie={location.state} onHide={() => setModalShow(false)}/>

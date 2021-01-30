@@ -1,27 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Row, Col} from 'react-grid-system';
 import CardDeck from 'react-bootstrap/CardDeck'
 import Card from 'react-bootstrap/Card'
-import MovieService from '../../services/MovieService'
 import {IMG_BASE_URL} from '../strings'
 
 export default function RecommendedCards(props) {
-    const [similarMovies, setSimilarMovies] = useState([]);
-    console.log(props.movie)
+    console.log(props.similarMovies)
 
-    /** Get similar movies to the passed movie */
-    useEffect(() => {
-        MovieService.getSimilarMovies(props.movie.id)
-            .then(res => {
-                setSimilarMovies(res.data.results);
-            })
-            .catch(err => {
-                alert(`Error getting similar movies: ${err}`);
-                console.log(err);
-            })
-    }, [])
-
-    console.log(similarMovies);
     return (
         <div>
             <br />
@@ -29,7 +14,7 @@ export default function RecommendedCards(props) {
             <Row className="mt-3">
                 <CardDeck>
                     {
-                        similarMovies.map((similarMovie, index) => {
+                        props.similarMovies.map((similarMovie, index) => {
                             index += 1;
                             console.log(index)
                             if (index <= 3) {

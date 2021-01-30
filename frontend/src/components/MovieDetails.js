@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useLocation} from 'react-router-dom'
 import {Row, Col} from 'react-grid-system'
 import Header from './layout/Header'
@@ -6,10 +6,35 @@ import VerticallyCenteredModal from './layout/VerticallyCenteredModal'
 import Button from 'react-bootstrap/Button'
 import {IMG_BASE_URL} from './strings'
 import RecommendedCards from './layout/RecommendedCards';
+import MovieService from '../services/MovieService'
 
 const MovieDetails = () => {
     const location = useLocation()
     const [modalShow, setModalShow] = useState(false);
+    const [similarMovies, setSimilarMovies] = useState([]);
+
+    /** Get similar movies to the passed movie */
+    useEffect(() => {
+        MovieService.getSimilarMovies(location.state.id)
+            .then(res => {
+                setSimilarMovies(res.data.results);
+            })
+            .catch(err => {
+                alert(`Error getting similar movies: ${err}`);
+                console.log(err);
+            })
+    }, [])
+
+    const showSimilarMovies = () => {
+        if (similarMovies.length !== 0){
+            console.log('return ')
+            return ( <RecommendedCards similarMovies={similarMovies} /> );
+        }
+    }
+
+    console.log(similarMovies);
+    console.log(similarMovies.length);
+    console.log(location.state.id);
 
     return (
         <div className="movie-details section">
@@ -63,7 +88,7 @@ const MovieDetails = () => {
                         </div>
                     </Col>
                 </Row>
-                <RecommendedCards movie={location.state} />
+                {showSimilarMovies()}
             </div>
 
             <VerticallyCenteredModal show={modalShow} movie={location.state} onHide={() => setModalShow(false)}/>

@@ -5,10 +5,10 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import MovieService from '../services/MovieService';
 
 const SearchBar = (props) => {
-    const searchVal = useRef(null);
-
+    const searchValue = useRef(props.searchVal);
+    
     const searchMovies = () => {
-        let currentVal = searchVal.current.value;
+        let currentVal = searchValue.current.value;
         props.setSearchVal(currentVal);
 
         if (currentVal !== ''){
@@ -41,12 +41,8 @@ const SearchBar = (props) => {
         <MDBCol md="12" style={{padding: '0'}}>
             <form className="form-inline mt-6">
                 <input className="form-control form-control-lg w-100" type="text" placeholder="Search"
-                       aria-label="Search"
-                       onKeyDown={handleKeyDownEnter} ref={searchVal} value={props.searchVal}/>
-                <MDBIcon
-                    style={{color: 'black', marginLeft: '-45px', filter: 'drop-shadow( 3px 3px 2px rgba(0, 0, 0, .2))'}}
-                    icon="search" size="2x"
-                    onClick={searchMovies}/>
+                       aria-label="Search" onKeyDown={handleKeyDownEnter} ref={searchValue}/>
+                <MDBIcon className="search-btn" icon="search" size="2x" onClick={searchMovies}/>
             </form>
         </MDBCol>
     );

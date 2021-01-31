@@ -572,4 +572,20 @@ footer h2 {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
+
+.search-btn {
+  color: black;
+  margin-left: -45px;
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.2));
+          filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.2));
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+}
+
+.search-btn:hover {
+  color: #1a1a1a;
+  cursor: pointer;
+  -webkit-filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.3));
+          filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.3));
+}
 /*# sourceMappingURL=App.css.map */

@@ -15,10 +15,6 @@ export default function PopularTab(props) {
         content: ''
     });
 
-    console.log(searchedMovies);
-    console.log(searchVal);
-    console.log(props.movies);  
-
     // Push amount of items passed in params to list.
     const carouselItems = (amountItems) => {
         const carouselItems = [];
@@ -71,9 +67,9 @@ export default function PopularTab(props) {
                 </Carousel> : null}
             <div className="container">
                 <h1 className="heading-page" style={{paddingTop: '30px'}}>Popular movies 
-                    <button onClick={resetSearchedMovies()} className="btn btn-primary ml-3">Reset</button>
+                    <button onClick={() => resetSearchedMovies()} className="btn btn-primary ml-3">Reset</button>
                 </h1>
-                <SearchBar setSearchedMovies={setSearchedMovies} setSearchVal={setSearchVal} setDisplayMessage={setDisplayMessage}/>
+                <SearchBar setSearchedMovies={setSearchedMovies} searchVal={searchVal} setSearchVal={setSearchVal} setDisplayMessage={setDisplayMessage}/>
                 {renderMovieList()}
             </div>
         </>

@@ -4,12 +4,19 @@ import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
 import ModalAction from '../ModalAction'
 import MyMovies from '../../../utils/MyMovies'
+import ConfirmationMessage from '../ConfirmationMessage';
+import {checkIfDisplayMesssageChanged} from '../../utils';
 
 export default function MyListTab(props) {
     const [myMovies, setMyMovies] = useState([])
     const [key, setKey] = useState('All');
     const [modalShow, setModalShow] = useState(false);
     const [delMovie, setDelMovie] = useState(null);
+    const [displayMessage, setDisplayMessage] = useState({
+        display: false,
+        type: '',
+        content: ''
+    });
 
     useEffect(() => {
         setMyMovies(MyMovies.getMoviesLocalStorage(props.movies));
@@ -35,12 +42,15 @@ export default function MyListTab(props) {
     }
 
     const handleClickDelete = (movie) => {
-        setDelMovie(movie)
-        setModalShow(true)
+        setDelMovie(movie);
+        setModalShow(true);
     }
+
+    checkIfDisplayMesssageChanged(displayMessage, setDisplayMessage, 3000);
 
     return (
         <div className="container">
+            {displayMessage.display ? <ConfirmationMessage type={displayMessage.type} message={displayMessage.content} /> : null}
             <h1 className="heading-page">My List</h1>
             {myMovies.length ? // If length of movies array is not 0 then return table of movies
                 <>
@@ -115,6 +125,7 @@ export default function MyListTab(props) {
                     onHide={() => setModalShow(false)}
                     movie={delMovie}
                     movies={myMovies}
+                    setDisplayMessage={setDisplayMessage}
                     content={{
                         title: deleteMovieContent.title,
                         description: deleteMovieContent.description,

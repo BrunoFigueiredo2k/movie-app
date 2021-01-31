@@ -27,6 +27,12 @@ function ModalAction(props) {
                 return true
             }
         })
+
+        props.setDisplayMessage({
+            display: true,
+            type: 'success',
+            content: 'Movie successfully deleted from your list.'
+        })
     }
 
     return (

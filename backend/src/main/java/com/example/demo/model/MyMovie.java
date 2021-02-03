@@ -1,12 +1,10 @@
 package com.example.demo.model;
 
-import org.hibernate.annotations.Table;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(appliesTo = "my_movies")
+@Table(name="my_movies")
 public class MyMovie {
 
     @Id

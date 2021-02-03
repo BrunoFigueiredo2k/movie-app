@@ -5,6 +5,7 @@ import Home from './components/pages/Home'
 import Movies from './components/pages/Movies'
 import About from './components/pages/About'
 import Login from "./components/pages/Login"
+import Contact from "./components/pages/Contact"
 import SignUp from "./components/pages/SignUp"
 import {AuthProvider} from "./Auth"
 import './css/App.css'
@@ -21,6 +22,7 @@ function App() {
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/movies" component={Movies}/>
                         <Route path="/about" component={About}/>
+                        <Route path="/contact" component={Contact}/>
                         <Route path="/details" component={MovieDetails}/>
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/signup" component={SignUp}/>
